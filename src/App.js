@@ -1,24 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import { createBrowserRouter , RouterProvider } from 'react-router-dom';
+import ProtectedRout from './Components/ProtectedRoute/ProtectedRout';
+import Login from './Pages/login';
+import AuthWrapper from './Components/AuthWrapper/AuthWrapper';
+import React from 'react';
+
+
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element:<div>index page</div>,
+  },
+  {
+    path:'/protected',
+    element:<ProtectedRout authoriezedRoles={["admin"]}><div>protected place</div></ProtectedRout>
+  },
+  {
+    path:'/login',
+    element:<Login/>
+  }
+]);
 
 function App() {
+    
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthWrapper>
+      <RouterProvider router={router}/>
+    </AuthWrapper>
   );
 }
 
