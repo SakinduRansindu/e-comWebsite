@@ -4,9 +4,10 @@ import {Navigate} from 'react-router-dom';
 
 
 export default function Login(){
+  const {userLogin,user} = AuthData();
+
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
-  const {userLogin,user} = AuthData();
 
   const checkLogin = (username,password)=>{
     if(username==='' || password===''){
