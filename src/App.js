@@ -4,6 +4,7 @@ import { createBrowserRouter , RouterProvider } from 'react-router-dom';
 import ProtectedRout from './Components/ProtectedRoute/ProtectedRout';
 import Login from './Pages/login';
 import AuthWrapper from './Components/AuthWrapper/AuthWrapper';
+import Logout from './Pages/logout';
 import React from 'react';
 
 
@@ -19,12 +20,14 @@ const router = createBrowserRouter([
   {
     path:'/login',
     element:<Login/>
+  },
+  {
+    path:'/logout',
+    element:<Logout/>
   }
 ]);
 
 function App() {
-    
-
   return (
     <AuthWrapper>
       <RouterProvider router={router}/>

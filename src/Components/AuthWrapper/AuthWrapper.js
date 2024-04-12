@@ -48,10 +48,11 @@ export default function AuthWrapper({children}) {
         });
     }
 
-    const userLogout = ()=>{
+    const userLogout =async ()=>{
         return new Promise((resolve,reject)=>{
             setUser({username:'',role:'',jwt:'',isLogedIn:false});
             resolve('Logout successful');
+            reject('Logout failed');
         });
     }
 
