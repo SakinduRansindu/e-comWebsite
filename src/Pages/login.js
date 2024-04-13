@@ -35,7 +35,7 @@ export default function Login(){
       </form>
     </div>
     :
-    <Navigate to="/protected"/>
+    <Navigate to="/"/>
   )
 
 

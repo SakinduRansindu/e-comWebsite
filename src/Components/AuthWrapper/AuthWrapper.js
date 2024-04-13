@@ -8,7 +8,6 @@ export const AuthData = ()=> useContext(AuthContext);
 export default function AuthWrapper({children}) {
 
     const checkLocalLoginData=()=>{
-
         const storedUser = localStorage.getItem('user');
         if(storedUser!=null){
             try{
@@ -34,12 +33,13 @@ export default function AuthWrapper({children}) {
 
     const userLogin = (username,password)=>{
     return new Promise((resolve,reject)=>{
-            if(username==='admin' && password==='admin'){
-                setUser({username:username,role:'admin',jwt:'admin',isLogedIn:true});
+            // make a api call to get the jwt and user data
+            if(username==='customer' && password==='customer'){
+                setUser({username:username,role:'customer',jwt:'customer',isLogedIn:true});
                 resolve('Login successful');
             }
-            else if(username==='user' && password==='user'){
-                setUser({username:username,role:'user',jwt:'user',isLogedIn:true});
+            else if(username==='seller' && password==='seller'){
+                setUser({username:username,role:'seller',jwt:'seller',isLogedIn:true});
                 resolve('Login successful');
             }
             else{
@@ -51,6 +51,7 @@ export default function AuthWrapper({children}) {
     const userLogout =async ()=>{
         return new Promise((resolve,reject)=>{
             setUser({username:'',role:'',jwt:'',isLogedIn:false});
+            // make a api call to clear the jwt in server
             resolve('Logout successful');
             reject('Logout failed');
         });

@@ -11,11 +11,31 @@ import React from 'react';
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<div>index page</div>,
+    element:<div>landing page</div>,
   },
   {
-    path:'/protected',
-    element:<ProtectedRout authoriezedRoles={["admin"]}><div>protected place</div></ProtectedRout>
+    path:'/manageProducts',
+    element:<ProtectedRout authoriezedRoles={["seller"]}><div>sellers can add remove or change their products.</div></ProtectedRout>
+  },
+  {
+    path:'/orderStatus',
+    element:<ProtectedRout authoriezedRoles={["customer"]}><div>Your orders status will display here</div></ProtectedRout>
+  },
+  {
+    path:'/sellerRegistration',
+    element:<div>seller registration form</div>
+  },
+  {
+    path:'/product',
+    element:<div>View product details</div>
+  },
+  {
+    path:'/customerRegistration',
+    element:<div>customer registration form</div>
+  },
+  {
+    path:'/payments',
+    element:<div>customer registration form</div>
   },
   {
     path:'/login',
