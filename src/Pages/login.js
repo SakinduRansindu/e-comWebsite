@@ -1,6 +1,9 @@
 import React, { useState} from 'react'
 import { AuthData } from '../Components/AuthWrapper/AuthWrapper';
 import {Navigate} from 'react-router-dom';
+import TextInput from '../Components/Input/TextInput';
+import TextAreaInput from '../Components/Input/TextAreaInput';
+import NumberInput from '../Components/Input/NumberInput';
 
 
 export default function Login(){
@@ -22,18 +25,22 @@ export default function Login(){
     }
   }
 
-
-
   return (
     !user.isLogedIn?
-    <div>
+    <div className='w-3'>
       <h1>Login page</h1>
       <form>
-        <input type="text" value={username} onChange={e=> setUsername(e.target.value)} placeholder="username"/>
-        <input type="password" value={password} onChange={e=> setPassword(e.target.value)} placeholder="password"/>
+        <TextInput type="text" label="User Name" value={username} onChange={e=> setUsername(e.target.value)} isRequired="true" placeholder="Username"></TextInput>
+        <TextInput type="password" label="Password" value={password} onChange={e=> setPassword(e.target.value)} placeholder="Password"></TextInput>
         <button onClick={e=>checkLogin(username,password)}>Login</button>
       </form>
+      <TextAreaInput label="TextArea input" isRequired="true" placeholder="Text are"></TextAreaInput>
+
+      <NumberInput label="Number input" isRequired="true" placeholder="Number input" max="20"></NumberInput>
+
     </div>
+
+    
     :
     <Navigate to="/"/>
   )
