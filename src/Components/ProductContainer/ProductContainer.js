@@ -11,11 +11,11 @@ export default class ProductContainer extends Component {
   render() {
     return (
         <div className="container-sm dark2 mt-5 rounded">
-            <div class="container-fluid">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-1 g-md-4 g-md-5">
+            <div className="container-fluid">
+                <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-1 g-md-4 g-md-5">
                     {
                         Array.from({ length: 30 }).map((_, index) => (
-                            <ProductItem key={index} id={index} Imgs={imgs}></ProductItem>
+                            <ProductItem key={index} id={index} Imgs={imgs} description="description of the product" title="T-shirt" productUrl="about:blank"></ProductItem>
                         ))
                     }
                 </div>

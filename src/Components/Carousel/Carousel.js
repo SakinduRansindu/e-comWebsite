@@ -6,10 +6,9 @@ export default function Carousel({...props}) {
   <div className="carousel-inner">
     {
         props.Imgs.map((e,i)=>{
-            console.log(e,i);
             return(
-            <div className={"carousel-item "+(i===0?"active":"")}>
-             <img src={e} className="d-block w-100" alt={"Product Item "+props.Cid} />
+            <div key={i} className={"carousel-item "+(i===0?"active":"")}>
+             <img src={e} className="d-block w-100 Cimg" alt={"Product Item "+props.Cid} />
             </div>
             );
         })
