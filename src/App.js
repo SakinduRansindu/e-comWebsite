@@ -5,6 +5,7 @@ import ProtectedRout from './Components/ProtectedRoute/ProtectedRout';
 import Login from './Pages/login';
 import AuthWrapper from './Components/AuthWrapper/AuthWrapper';
 import Logout from './Pages/logout';
+import ProductContainer from './Components/ProductContainer/ProductContainer';
 import React from 'react';
 
 
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path:'/orderStatus',
     element:<ProtectedRout authoriezedRoles={["customer"]}><div>Your orders status will display here</div></ProtectedRout>
+  },
+  {
+    path:'/browse',
+    element:<ProductContainer></ProductContainer>
   },
   {
     path:'/sellerRegistration',
