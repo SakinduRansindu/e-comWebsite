@@ -4,6 +4,7 @@ import {Navigate} from 'react-router-dom';
 import TextInput from '../Components/Input/TextInput';
 import TextAreaInput from '../Components/Input/TextAreaInput';
 import NumberInput from '../Components/Input/NumberInput';
+import Navbar from '../Components/Navbar/Navbar';
 
 
 export default function Login(){
@@ -28,6 +29,7 @@ export default function Login(){
   return (
     !user.isLogedIn?
     <div className='w-3'>
+      <Navbar/>
       <h1>Login page</h1>
       <form>
         <TextInput type="text" label="User Name" value={username} onChange={e=> setUsername(e.target.value)} isRequired="true" placeholder="Username"></TextInput>
