@@ -10,7 +10,7 @@ export default function CustomInput({
   ...props
 }) {
   return (
-    <div class="m-2 mb-3">
+    <div className="m-2 mb-3">
       {label && (
         <label htmlFor="customInput" className="form-label">
           {label}
