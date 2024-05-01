@@ -6,11 +6,11 @@ import { Navigate } from "react-router-dom";
 import SlideBar from "../../Components/Slidebar/SlideBar";
 
 
-const TemplateWithSidebar = (childrens)=>{
+const TemplateWithSidebar = (childrens,renderSlideBar)=>{
     return(
         <>
         <Navbar/>
-        <SlideBar/>
+        {renderSlideBar?<SlideBar/>:<></>}
         <div className="container-fluid">
             {childrens}
         </div>
@@ -30,16 +30,8 @@ export default function Template({...props}) {
             );
         }
         else{
-            // return(
-            //     <>
-            //     <Navbar/>
-            //     <div className="container-fluid">
-            //         {props.children}
-            //     </div>
-            //     <Footer />
-            //     </>
-            // )
-            return TemplateWithSidebar(props.children);
+
+            return TemplateWithSidebar(props.children,props.renderSlideBar);
         }
     }
     else{
@@ -49,16 +41,7 @@ export default function Template({...props}) {
         );
         }
         else{
-            // return(
-                // <>
-                // <Navbar/>
-                // <div className="container-fluid">
-                //     {props.children}
-                // </div>
-                // <Footer />
-                // </>
-            // )
-           return TemplateWithSidebar(props.children);
+           return TemplateWithSidebar(props.children,props.renderSlideBar);
         }
 
     }

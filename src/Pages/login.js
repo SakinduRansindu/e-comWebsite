@@ -29,7 +29,7 @@ export default function Login() {
   };
 
 return(
-  <Template RedirectIfLoged="/browse">
+  <Template RedirectIfLoged="/browse" renderSlideBar={false}>
     <h1>Login page</h1>
     <form>
       <TextInput
