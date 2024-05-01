@@ -52,7 +52,7 @@ return(
     <TextAreaInput
       label="TextArea input"
       isRequired="true"
-      placeholder="Text are"
+      placeholder="Text area"
     ></TextAreaInput>
     
     <NumberInput
