@@ -6,9 +6,9 @@ import Login from './Pages/login';
 import AuthWrapper from './Components/AuthWrapper/AuthWrapper';
 import Logout from './Pages/logout';
 import ProductContainer from './Components/ProductContainer/ProductContainer';
+import BrowseProducts from './Pages/BrowseProducts';
 import React from 'react';
 import AddProductForm from './Components/AddProductForm/AddProductForm';
-
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/browse',
-    element:<ProductContainer></ProductContainer>
+    element:<BrowseProducts></BrowseProducts>
   },
   {
     path:'/sellerRegistration',
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AuthWrapper>
-      <RouterProvider router={router}/>
+        <RouterProvider router={router}/>
     </AuthWrapper>
   );
 }
