@@ -9,6 +9,7 @@ import ProductContainer from './Components/ProductContainer/ProductContainer';
 import BrowseProducts from './Pages/BrowseProducts';
 import React from 'react';
 import AddProductForm from './Components/AddProductForm/AddProductForm';
+import RegisterPage from './Pages/registerPage';
 
 const router = createBrowserRouter([
   {
@@ -28,16 +29,12 @@ const router = createBrowserRouter([
     element:<BrowseProducts></BrowseProducts>
   },
   {
-    path:'/sellerRegistration',
-    element:<div>seller registration form</div>
+    path:'/register',
+    element:<RegisterPage></RegisterPage>
   },
   {
     path:'/product',
     element:<AddProductForm></AddProductForm>
-  },
-  {
-    path:'/customerRegistration',
-    element:<div>customer registration form</div>
   },
   {
     path:'/payments',
