@@ -69,7 +69,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-# Using git
+
 ### Clone the project
 `git clone https://github.com/SakinduRansindu/e-comWebsite.git`
 & navigate to the project folder
@@ -97,5 +97,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - commit changes to github
 - once you done the feature create a pull request to dev branch
 - delete the brach after merged
-
 
