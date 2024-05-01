@@ -1,4 +1,7 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function SlideBar({ ...props }) {
     return (
@@ -6,6 +9,7 @@ export default function SlideBar({ ...props }) {
             <div className="offcanvas offcanvas-start" tabindex="-1" id="search-slider" aria-labelledby="search-sliderLabel">
                 <p className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span className="fs-4">Filters</span>
+                    
                 </p>
                 <hr />
                 <div className="mb-3">
@@ -32,14 +36,23 @@ export default function SlideBar({ ...props }) {
                     </select>
                 </div>
 
+                <div className="mb-3">
+                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
+                    Search
+                </button>
+                </div>
+
                 <button class="btn btn-primary position-absolute bottom-0 m-3 end-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
                     Back
                 </button>
                 
             </div>
-            <button class="btn btn-primary rounded" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
-            <i class="fas fa-search"></i>
+            <div class="position-fixed top-50 start-0 ">
+            <button class="btn btn-primary rounded-5 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
+            <FontAwesomeIcon icon={faSearch} />
             </button>
+            </div>
+
         </>
     )
 }
