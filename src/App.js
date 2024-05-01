@@ -7,6 +7,7 @@ import AuthWrapper from './Components/AuthWrapper/AuthWrapper';
 import Logout from './Pages/logout';
 import ProductContainer from './Components/ProductContainer/ProductContainer';
 import React from 'react';
+import AddProductForm from './Components/AddProductForm/AddProductForm';
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/product',
-    element:<div>View product details</div>
+    element:<AddProductForm></AddProductForm>
   },
   {
     path:'/customerRegistration',
