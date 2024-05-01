@@ -3,8 +3,7 @@ import React from "react";
 export default function Footer({ ...props }) {
   return (
     <>
-      <div className="container ">
-        <footer className="py-3 my-4 ">
+        <footer className="py-3 my-4 " style={{'bottom':'0%','position':'relative','width':'100%'}}>
           <ul className="nav justify-content-center border-bottom pb-3 mb-3">
             <li className="nav-item">
               <a href="#" className="nav-link px-2 text-body-secondary">
@@ -20,7 +19,6 @@ export default function Footer({ ...props }) {
           </ul>
           <p className="text-center text-body-secondary">&copy; 2024 MerchMora</p>
         </footer>
-      </div>
-    </>
+      </>
   );
 }

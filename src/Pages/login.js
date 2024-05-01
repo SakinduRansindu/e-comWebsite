@@ -6,6 +6,7 @@ import TextAreaInput from "../Components/Input/TextAreaInput";
 import NumberInput from "../Components/Input/NumberInput";
 import Navbar from "../Components/Navbar/Navbar";
 import Footer from "../Components/Footer/Footer";
+import Template from "./Template/Template";
 
 export default function Login() {
   const { userLogin, user } = AuthData();
@@ -27,43 +28,41 @@ export default function Login() {
     }
   };
 
-  return !user.isLogedIn ? (
-    <div className="w-3">
-      <Navbar />
-      <h1>Login page</h1>
-      <form>
-        <TextInput
-          type="text"
-          label="User Name"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          isRequired="true"
-          placeholder="Username"
-        ></TextInput>
-        <TextInput
-          type="password"
-          label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        ></TextInput>
-        <button onClick={(e) => checkLogin(username, password)}>Login</button>
-      </form>
-      <TextAreaInput
-        label="TextArea input"
+return(
+  <Template RedirectIfLoged="/browse">
+    <h1>Login page</h1>
+    <form>
+      <TextInput
+        type="text"
+        label="User Name"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
         isRequired="true"
-        placeholder="Text are"
-      ></TextAreaInput>
+        placeholder="Username"
+      ></TextInput>
+      <TextInput
+        type="password"
+        label="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      ></TextInput>
+      <button onClick={(e) => checkLogin(username, password)}>Login</button>
+    </form>
+    <TextAreaInput
+      label="TextArea input"
+      isRequired="true"
+      placeholder="Text are"
+    ></TextAreaInput>
+    
+    <NumberInput
+      label="Number input"
+      isRequired="true"
+      placeholder="Number input"
+      max="20"
+    ></NumberInput>
+    </Template>
+);
 
-      <NumberInput
-        label="Number input"
-        isRequired="true"
-        placeholder="Number input"
-        max="20"
-      ></NumberInput>
-      <Footer />
-    </div>
-  ) : (
-    <Navigate to="/" />
-  );
+
 }
