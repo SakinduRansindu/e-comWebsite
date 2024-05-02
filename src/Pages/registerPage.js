@@ -35,12 +35,16 @@ export default function RegisterPage() {
 }
 else if(isSeller){
     return(
+        <Template renderSlideBar={false}>
         <Register role="seller"></Register>
+        </Template>
     )
 }
 else{
     return(
+        <Template renderSlideBar={false}>
         <Register role="customer"></Register>
+        </Template>
     )
 }
 }

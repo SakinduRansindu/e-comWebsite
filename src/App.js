@@ -8,8 +8,9 @@ import Logout from './Pages/logout';
 import ProductContainer from './Components/ProductContainer/ProductContainer';
 import BrowseProducts from './Pages/BrowseProducts';
 import React from 'react';
-import AddProductForm from './Components/AddProductForm/AddProductForm';
 import RegisterPage from './Pages/registerPage';
+import OrderState from './Pages/OrderState';
+import AddProduct from './Pages/AddProduct';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/orderStatus',
-    element:<ProtectedRout authoriezedRoles={["customer"]}><div>Your orders status will display here</div></ProtectedRout>
+    element:<ProtectedRout authoriezedRoles={["customer"]}><OrderState></OrderState></ProtectedRout>
   },
   {
     path:'/browse',
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/product',
-    element:<AddProductForm></AddProductForm>
+    element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
     path:'/payments',

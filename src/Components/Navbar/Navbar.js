@@ -6,9 +6,10 @@ export default function Navbar({ ...props }) {
   const { user } = AuthData();
   const navigate = useNavigate();
   const navLinks = [
-    { name: "Home", link: "/" ,allowed:["seller","user","not-logged"]},
-    { name: "Browse", link: "/browse",allowed:["seller","user","not-logged"]},
+    { name: "Home", link: "/" ,allowed:["not-logged"]},
+    { name: "Browse", link: "/browse",allowed:["not-logged"]},
     { name: "Manage Products", link: "/products", allowed:["seller"]},
+    { name: "My Orders", link: "/orderStatus", allowed:["customer"]},
     { name: "Register", link: "/register", allowed:["not-logged"]},
 
   ];
