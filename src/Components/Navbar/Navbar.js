@@ -20,7 +20,7 @@ export default function Navbar({ ...props }) {
         aria-label="Eleventh navbar example"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/browse">
             MerchMora
           </a>
           <button

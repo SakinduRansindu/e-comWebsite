@@ -11,11 +11,12 @@ import React from 'react';
 import RegisterPage from './Pages/registerPage';
 import OrderState from './Pages/OrderState';
 import AddProduct from './Pages/AddProduct';
+import LandingPage from './Pages/LandingPage';
 
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<div>landing page</div>,
+    element:<LandingPage></LandingPage>,
   },
   {
     path:'/manageProducts',
