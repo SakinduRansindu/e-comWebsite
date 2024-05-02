@@ -1,8 +1,11 @@
 import React from 'react'
-import AddProductForm from '../../Components/AddProductForm/AddProductForm'
+import AddProductForm from '../Components/AddProductForm/AddProductForm'
+import Template from './Template/Template'
 
-export default function addProduct() {
+export default function AddProduct() {
   return (
-    <AddProductForm></AddProductForm>
+    <Template renderSlideBar={false}>
+      <AddProductForm></AddProductForm>
+    </Template>
   )
 }

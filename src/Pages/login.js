@@ -4,8 +4,6 @@ import { Navigate } from "react-router-dom";
 import TextInput from "../Components/Input/TextInput";
 import TextAreaInput from "../Components/Input/TextAreaInput";
 import NumberInput from "../Components/Input/NumberInput";
-import Navbar from "../Components/Navbar/Navbar";
-import Footer from "../Components/Footer/Footer";
 import Template from "./Template/Template";
 
 export default function Login() {
@@ -52,7 +50,7 @@ return(
     <TextAreaInput
       label="TextArea input"
       isRequired="true"
-      placeholder="Text are"
+      placeholder="Text area"
     ></TextAreaInput>
     
     <NumberInput
@@ -61,6 +59,7 @@ return(
       placeholder="Number input"
       max="20"
     ></NumberInput>
+    
     </Template>
 );
 
