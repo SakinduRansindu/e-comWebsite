@@ -20,6 +20,24 @@ export const createUser =async (uname, FirstName, LastName, Email, Password, Acc
     })
 }
 
+export const createSeller =async (DisplayName, Email, Password, Bank_Acc_No, Phone_No, ProfilePicture)=>{
+    console.log('createSeller');
+    const body_data  = JSON.stringify({DisplayName, Email, Password, Bank_Acc_No, Phone_No, ProfilePicture});
+    console.log(body_data);
+
+    return axios({
+    url: "/api/v1/auth/sellerReg",
+    method: "POST",
+    mode:'cors',
+    headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        'redirect': "follow",
+    },
+    data: body_data,
+    })
+}
+
 export const testCreate = ()=>{
     console.log("test create");
 

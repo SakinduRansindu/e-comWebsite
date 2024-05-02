@@ -3,6 +3,7 @@ import TextInput from '../Input/TextInput'
 import ProfilePictureSet from '../ProfilePicture/ProfilePictureSet';
 import { useState,useEffect } from 'react'
 import { createUser,testCreate } from '../../API/API';
+import Alert from '../Alert/Alert';
 
 export default function CustomerReg() {
 
@@ -14,8 +15,8 @@ export default function CustomerReg() {
     const [Bank_Acc_No, setBank_Acc_No] = useState("");
     const [Phone_No, setPhone_No] = useState("");
     const [ProfilePictureLink, setProfilePictureLink] = useState(null);
-    const [message, setMessage] = useState("");
-    const [msgColor, setMsgColor] = useState("");
+    const [message, setMessage] = useState({color:'alert-danger',message:'',isSuccess:false});
+    const [display,setDisplay] = useState(false);
 
     const clear=()=>{
       setUsername("");
@@ -25,12 +26,21 @@ export default function CustomerReg() {
       setEmail("");
       setBank_Acc_No("");
       setPhone_No("");
+      setDisplay(false);
     }
     
+    let timeout;
     useEffect(()=>{
-      setTimeout(()=>{
-        setMessage("");
-      },3000);
+      timeout = setTimeout(()=>{
+        if(timeout){
+          console.log('clearing timeout');
+          clearTimeout(timeout);
+        }
+        setDisplay(false);
+        if(message.isSuccess){
+          clear();
+        }
+      },5000);
     },[message]);
 
     const register=(e)=>{
@@ -38,14 +48,13 @@ export default function CustomerReg() {
       createUser(username, FirstName, LastName, Email,password, Bank_Acc_No,'','', Phone_No, ProfilePictureLink)
       .then((res)=>{
         console.log(res.data.message);
-        setMessage(res.data.message);
-          setMsgColor('text-success');
-
+        setMessage({color:'alert-success',message:res.data.message,isSuccess:true});
+        setDisplay(true);
       })
       .catch((err)=>{
         console.error(err.response.data.message);
-        setMessage(err.response.data.message);
-      setMsgColor('text-danger');
+        setMessage({color:'alert-danger',message:err.response.data.message,isSuccess:false});
+        setDisplay(true);
           });
       return false;
     }
@@ -125,12 +134,10 @@ export default function CustomerReg() {
         ></TextInput>
       
       <div className="row">
+          {display?<Alert title={message.isSuccess?"Success":"Error"} message={message.message} type={message.color}></Alert>:null}
           <div className="col-md-12">
-              <p className='text-danger mx-auto' style={{height:'1rem'}}>{message}</p>
-          </div>
-          <div className="col-md-12">
-              <button type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
-              <button className="btn btn-success float-end" onClick={(e)=>register(e)}>Register</button>
+              <button disabled={display} type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
+              <button disabled={display} className="btn btn-success float-end" onClick={(e)=>register(e)}>Register</button>
           </div>
       </div>
 

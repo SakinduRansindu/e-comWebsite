@@ -1,7 +1,9 @@
 import React from 'react'
 import TextInput from '../Input/TextInput'
 import ProfilePictureSet from '../ProfilePicture/ProfilePictureSet';
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
+import { createSeller } from '../../API/API';
+import Alert from '../Alert/Alert';
 
 export default function SellerReg() {
 
@@ -12,6 +14,8 @@ export default function SellerReg() {
     const [Bank_Acc_No, setBank_Acc_No] = useState("");
     const [Phone_No, setPhone_No] = useState("");
     const [ProfilePictureLink, setProfilePictureLink] = useState(null);
+    const [message, setMessage] = useState({color:'alert-danger',message:'',isSuccess:false});
+    const [display,setDisplay] = useState(false);
 
     const clear=()=>{
         setUsername("");
@@ -20,6 +24,38 @@ export default function SellerReg() {
         setEmail("");
         setBank_Acc_No("");
         setPhone_No("");
+        setDisplay(false);
+        }
+
+        let timeout;
+        useEffect(()=>{
+          timeout = setTimeout(()=>{
+            if(timeout){
+              console.log('clearing timeout');
+              clearTimeout(timeout);
+            }
+            setDisplay(false);
+            if(message.isSuccess){
+              clear();
+            }
+          },5000);
+        },[message]);
+
+
+        const register=(e)=>{
+          e.preventDefault();
+          createSeller(DisplayName, Email, password, Bank_Acc_No, Phone_No, ProfilePictureLink)
+          .then((res)=>{
+            console.log(res.data.message);
+            setMessage({color:'alert-success',message:res.data.message,isSuccess:true});
+            setDisplay(true);
+          })
+          .catch((err)=>{
+            console.error(err.response.data.message);
+            setMessage({color:'alert-danger',message:err.response.data.message,isSuccess:false});
+            setDisplay(true);
+              });
+          return false;
         }
 
   return (
@@ -37,7 +73,7 @@ export default function SellerReg() {
         label="User Name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        isRequired="true"
+        isRequired={true}
         placeholder="Username"
       ></TextInput>
 
@@ -46,6 +82,7 @@ export default function SellerReg() {
         label="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        isRequired={true}
         placeholder="Password"
       ></TextInput>
 
@@ -54,7 +91,7 @@ export default function SellerReg() {
         label="Display Name"
         value={DisplayName}
         onChange={(e) => setDisplayName(e.target.value)}
-        isRequired="true"
+        isRequired={true}
         placeholder="Display Name"
         ></TextInput>
 
@@ -63,7 +100,7 @@ export default function SellerReg() {
         label="Email"
         value={Email}
         onChange={(e) => setEmail(e.target.value)}
-        isRequired="true"
+        isRequired={true}
         placeholder="Email"
         ></TextInput>
 
@@ -72,7 +109,7 @@ export default function SellerReg() {
         label="Bank Account Number"
         value={Bank_Acc_No}
         onChange={(e) => setBank_Acc_No(e.target.value)}
-        isRequired="true"
+        isRequired={false}
         placeholder="Bank Account Number"
         ></TextInput>
 
@@ -81,14 +118,15 @@ export default function SellerReg() {
         label="Phone Number"
         value={Phone_No}
         onChange={(e) => setPhone_No(e.target.value)}
-        isRequired="false"
+        isRequired={false}
         placeholder="Phone Number"
         ></TextInput>
 
     <div className="row">
+    {display?<Alert title={message.isSuccess?"Success":"Error"} message={message.message} type={message.color}></Alert>:null}
           <div className="col-md-12">
-              <button type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
-              <button className="btn btn-success float-end" onClick={(e) => console.log(e)}>Register</button>
+              <button disabled={display} type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
+              <button disabled={display} className="btn btn-success float-end" onClick={(e) => register(e)}>Register</button>
           </div>
       </div>
 
