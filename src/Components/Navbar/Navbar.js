@@ -25,7 +25,7 @@ export default function Navbar({ ...props }) {
             MerchMora
           </a>
 
-          <ProfileDisplay overwriteClassName="d-lg-none" profilePicUrl="" name='user' />
+          <ProfileDisplay overwriteClassName="d-lg-none" profilePicUrl="" name={user.username} />
           <button
             className="navbar-toggler"
             type="button"
@@ -57,7 +57,7 @@ export default function Navbar({ ...props }) {
               })}
             </ul>
             <div className="d-lg-flex col-lg-3 justify-content-lg-end">
-          <ProfileDisplay overwriteClassName="d-none d-lg-inline" profilePicUrl="" name='user' />
+          <ProfileDisplay overwriteClassName="d-none d-lg-inline" profilePicUrl="" name={user.username} />
               {
               user.isLogedIn ?(
                <button onClick={()=>navigate('/logout')} className="btn btn-primary">Logout</button>
