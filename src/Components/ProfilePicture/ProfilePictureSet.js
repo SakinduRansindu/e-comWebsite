@@ -47,7 +47,7 @@ export default function ProfilePictureSet(
         aria-required={isRequired}
         {...props}
       />
-      <img src={image||ProfilePicture} onClick={()=>onImgClick()} class="rounded-circle float-right border" style={{width:'20vw',height:'20vw',cursor:'pointer'}} alt="profile picture"/>
+      <img src={image||ProfilePicture} onClick={()=>onImgClick()} className="rounded-circle float-right border" style={{width:'20vw',height:'20vw',cursor:'pointer'}} alt="profile picture"/>
       </div>
   )
 }
