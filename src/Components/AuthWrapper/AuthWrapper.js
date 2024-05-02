@@ -13,14 +13,14 @@ export default function AuthWrapper({children}) {
             try{
                 const data = JSON.parse(storedUser);
                 if(data.username && data.role && data.jwt){
-                    return {username:data.username,role:data.role,jwt:data.jwt,isLogedIn:true};
+                    return {username:data.username,role:data.role,jwt:data.jwt,avatar:data.avatar,isLogedIn:true};
                 }
             }
             catch(e){
                 console.error(e);
             }
         }
-        return {username:'',role:'',jwt:'',isLogedIn:false};
+        return {username:'',role:'',jwt:'',avatar:'',isLogedIn:false};
     }
 
     const [user,setUser] = useState(checkLocalLoginData());
@@ -35,11 +35,11 @@ export default function AuthWrapper({children}) {
     return new Promise((resolve,reject)=>{
             // make a api call to get the jwt and user data
             if(username==='customer' && password==='customer'){
-                setUser({username:username,role:'customer',jwt:'customer',isLogedIn:true});
+                setUser({username:username,role:'customer',jwt:'customer',avatar:'',isLogedIn:true});
                 resolve('Login successful');
             }
             else if(username==='seller' && password==='seller'){
-                setUser({username:username,role:'seller',jwt:'seller',isLogedIn:true});
+                setUser({username:username,role:'seller',jwt:'seller',avatar:'',isLogedIn:true});
                 resolve('Login successful');
             }
             else{
@@ -50,7 +50,7 @@ export default function AuthWrapper({children}) {
 
     const userLogout =async ()=>{
         return new Promise((resolve,reject)=>{
-            setUser({username:'',role:'',jwt:'',isLogedIn:false});
+            setUser({username:'',role:'',jwt:'',avatar:'',isLogedIn:false});
             // make a api call to clear the jwt in server
             resolve('Logout successful');
             reject('Logout failed');

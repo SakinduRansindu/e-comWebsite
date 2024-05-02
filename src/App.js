@@ -8,12 +8,15 @@ import Logout from './Pages/logout';
 import ProductContainer from './Components/ProductContainer/ProductContainer';
 import BrowseProducts from './Pages/BrowseProducts';
 import React from 'react';
-import AddProductForm from './Components/AddProductForm/AddProductForm';
+import RegisterPage from './Pages/registerPage';
+import OrderState from './Pages/OrderState';
+import AddProduct from './Pages/AddProduct';
+import LandingPage from './Pages/LandingPage';
 
 const router = createBrowserRouter([
   {
     path:'/',
-    element:<div>landing page</div>,
+    element:<LandingPage></LandingPage>,
   },
   {
     path:'/manageProducts',
@@ -21,23 +24,19 @@ const router = createBrowserRouter([
   },
   {
     path:'/orderStatus',
-    element:<ProtectedRout authoriezedRoles={["customer"]}><div>Your orders status will display here</div></ProtectedRout>
+    element:<ProtectedRout authoriezedRoles={["customer"]}><OrderState></OrderState></ProtectedRout>
   },
   {
     path:'/browse',
     element:<BrowseProducts></BrowseProducts>
   },
   {
-    path:'/sellerRegistration',
-    element:<div>seller registration form</div>
+    path:'/register',
+    element:<RegisterPage></RegisterPage>
   },
   {
     path:'/product',
-    element:<AddProductForm></AddProductForm>
-  },
-  {
-    path:'/customerRegistration',
-    element:<div>customer registration form</div>
+    element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
     path:'/payments',

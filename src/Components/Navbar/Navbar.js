@@ -1,14 +1,16 @@
 import React from "react";
 import { AuthData } from "../AuthWrapper/AuthWrapper";
 import {useNavigate} from 'react-router-dom';
+import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
 
 export default function Navbar({ ...props }) {
   const { user } = AuthData();
   const navigate = useNavigate();
   const navLinks = [
-    { name: "Home", link: "/" ,allowed:["seller","user","not-logged"]},
-    { name: "Browse", link: "/browse",allowed:["seller","user","not-logged"]},
+    { name: "Home", link: "/" ,allowed:["not-logged"]},
+    { name: "Browse", link: "/browse",allowed:["not-logged"]},
     { name: "Manage Products", link: "/products", allowed:["seller"]},
+    { name: "My Orders", link: "/orderStatus", allowed:["customer"]},
     { name: "Register", link: "/register", allowed:["not-logged"]},
 
   ];
@@ -19,9 +21,11 @@ export default function Navbar({ ...props }) {
         aria-label="Eleventh navbar example"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="/browse">
             MerchMora
           </a>
+
+          <ProfileDisplay overwriteClassName="d-lg-none" profilePicUrl="" name={user.username} />
           <button
             className="navbar-toggler"
             type="button"
@@ -33,7 +37,7 @@ export default function Navbar({ ...props }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
+          
           <div className="collapse navbar-collapse" id="navbarsExample09">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {navLinks.map((element, index) => {
@@ -53,6 +57,7 @@ export default function Navbar({ ...props }) {
               })}
             </ul>
             <div className="d-lg-flex col-lg-3 justify-content-lg-end">
+          <ProfileDisplay overwriteClassName="d-none d-lg-inline" profilePicUrl="" name={user.username} />
               {
               user.isLogedIn ?(
                <button onClick={()=>navigate('/logout')} className="btn btn-primary">Logout</button>
