@@ -1,6 +1,7 @@
 import React from "react";
 import { AuthData } from "../AuthWrapper/AuthWrapper";
 import {useNavigate} from 'react-router-dom';
+import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
 
 export default function Navbar({ ...props }) {
   const { user } = AuthData();
@@ -23,6 +24,8 @@ export default function Navbar({ ...props }) {
           <a className="navbar-brand" href="/browse">
             MerchMora
           </a>
+
+          <ProfileDisplay overwriteClassName="d-lg-none" profilePicUrl="" name='user' />
           <button
             className="navbar-toggler"
             type="button"
@@ -34,7 +37,7 @@ export default function Navbar({ ...props }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
+          
           <div className="collapse navbar-collapse" id="navbarsExample09">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {navLinks.map((element, index) => {
@@ -54,6 +57,7 @@ export default function Navbar({ ...props }) {
               })}
             </ul>
             <div className="d-lg-flex col-lg-3 justify-content-lg-end">
+          <ProfileDisplay overwriteClassName="d-none d-lg-inline" profilePicUrl="" name='user' />
               {
               user.isLogedIn ?(
                <button onClick={()=>navigate('/logout')} className="btn btn-primary">Logout</button>
