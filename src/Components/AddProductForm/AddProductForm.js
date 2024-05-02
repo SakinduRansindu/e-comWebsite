@@ -95,10 +95,10 @@ export default function AddProductForm() {
         placeholder="end date"
         ></TextInput>
       
-      <div class="row">
-          <div class="col-md-12">
-              <button type="button" onClick={(e)=>clear()} class="btn btn-danger">Clear</button>
-              <button class="btn btn-success float-end" onClick={(e) => console.log(e)}>Register</button>
+      <div className="row">
+          <div className="col-md-12">
+              <button type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
+              <button className="btn btn-success float-end" onClick={(e) => console.log(e)}>Register</button>
           </div>
       </div>
 

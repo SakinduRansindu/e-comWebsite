@@ -6,6 +6,7 @@ import { useState } from 'react'
 export default function SellerReg() {
 
     const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [DisplayName, setDisplayName] = useState("");
     const [Email, setEmail] = useState("");
     const [Bank_Acc_No, setBank_Acc_No] = useState("");
@@ -14,6 +15,7 @@ export default function SellerReg() {
 
     const clear=()=>{
         setUsername("");
+        setPassword("");
         setDisplayName("");
         setEmail("");
         setBank_Acc_No("");
@@ -39,6 +41,14 @@ export default function SellerReg() {
         placeholder="Username"
       ></TextInput>
 
+      <TextInput
+        type="password"
+        label="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+      ></TextInput>
+
         <TextInput
         type="text"
         label="Display Name"
@@ -50,7 +60,6 @@ export default function SellerReg() {
 
         <TextInput
         type="text"
-
         label="Email"
         value={Email}
         onChange={(e) => setEmail(e.target.value)}
@@ -76,10 +85,10 @@ export default function SellerReg() {
         placeholder="Phone Number"
         ></TextInput>
 
-    <div class="row">
-          <div class="col-md-12">
-              <button type="button" onClick={(e)=>clear()} class="btn btn-danger">Clear</button>
-              <button class="btn btn-success float-end" onClick={(e) => console.log(e)}>Register</button>
+    <div className="row">
+          <div className="col-md-12">
+              <button type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
+              <button className="btn btn-success float-end" onClick={(e) => console.log(e)}>Register</button>
           </div>
       </div>
 

@@ -11,8 +11,8 @@ export default function ProfileDisplay({
   if (user.isLogedIn){
   return (
     <div className={'d-flex align-items-center ms-auto mx-2 dark2 rounded '+overwriteClassName}>
-      <img src={profilePicUrl||ProfilePictureDefault} style={{width:'50px',height:'50px',backgroundClip:'center'}} alt="Profile picture" class="rounded-circle border col" />
-      <p class="d-none my-0 mx-1 d-sm-inline d-lg-inline col">{name}</p>
+      <img src={profilePicUrl||ProfilePictureDefault} style={{width:'50px',height:'50px',backgroundClip:'center'}} alt="Profile picture" className="rounded-circle border col" />
+      <p className="d-none my-0 mx-1 d-sm-inline d-lg-inline col">{name}</p>
     </div>
   )}
   else{
