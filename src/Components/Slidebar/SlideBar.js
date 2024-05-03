@@ -37,18 +37,18 @@ export default function SlideBar({ ...props }) {
                 </div>
 
                 <div className="mb-3">
-                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
+                <button className="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
                     Search
                 </button>
                 </div>
 
-                <button class="btn btn-primary position-absolute bottom-0 m-3 end-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
+                <button className="btn btn-primary position-absolute bottom-0 m-3 end-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
                     Back
                 </button>
                 
             </div>
-            <div class="position-fixed top-50 start-0 ">
-            <button class="btn btn-primary rounded-5 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
+            <div className="position-fixed top-50 start-0 ">
+            <button className="btn btn-primary rounded-5 p-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#search-slider" aria-controls="search-slider">
             <FontAwesomeIcon icon={faSearch} />
             </button>
             </div>
