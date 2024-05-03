@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     element:<RegisterPage></RegisterPage>
   },
   {
-    path:'/product',
+    path:'/products',
     element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
