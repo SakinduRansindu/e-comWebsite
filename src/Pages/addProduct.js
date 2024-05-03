@@ -4,6 +4,7 @@ import Template from './Template/Template'
 
 export default function AddProduct() {
   return (
+    
     <Template renderSlideBar={false}>
       <AddProductForm></AddProductForm>
     </Template>
