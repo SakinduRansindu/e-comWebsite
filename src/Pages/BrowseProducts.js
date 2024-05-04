@@ -44,7 +44,16 @@ export default function BrowseProducts() {
       console.log(res.data.products);
       let tmp=[];
       res.data.products.map(element => {
-        tmp.push({title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId});
+        let imgs = [];
+        if( element.ProductImgs.length>0){
+          element.ProductImgs.forEach(ele => {
+            imgs.push(`/uploads/${ele.imgUrl}`);
+          });
+        }
+        else{
+          imgs.push(defaultImg);
+        }
+        tmp.push({title:element.DisplayName,description:element.Description,Imgs:imgs,productUrl:"/viewProduct/"+element.ProductId,seller:element.SId});
       });
       // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
       setProduct([...tmp]);

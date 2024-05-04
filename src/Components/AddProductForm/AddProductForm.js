@@ -59,8 +59,8 @@ export default function AddProductForm() {
         setDisplay(true);
       })
       .catch((err) => {
-        console.error(err.response.data.message);
-        setMessage({ color: 'alert-danger', message: err.response.data.message, isSuccess: false });
+        console.error(err.message);
+        setMessage({ color: 'alert-danger', message: err.message, isSuccess: false });
         setDisplay(true);
       });
   }
