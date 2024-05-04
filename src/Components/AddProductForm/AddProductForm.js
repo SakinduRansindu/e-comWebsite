@@ -71,7 +71,7 @@ export default function AddProductForm() {
       <h1> Add a product</h1>
       <MultiImageSelect
         label="Product Images"
-        onChange={(e) => setImages(e.target.Files)}
+        onChange={(e) => setImages(e.target.files)}
         isRequired={false}
         placeholder="Product Name"
       >

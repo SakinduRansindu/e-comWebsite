@@ -3,14 +3,27 @@ import axios from 'axios'
 
 
 export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, UnitPrice, Discount, DiscountEndDate,imgs )=> {
+    const formData = new FormData();
+    formData.append('Category', Category);
+    formData.append('AvailableUnits', AvailableUnits);
+    formData.append('DisplayName', DisplayName);
+    formData.append('Description', Description);
+    formData.append('UnitPrice', UnitPrice);
+    formData.append('Discount', Discount);
+    formData.append('DiscountEndDate', DiscountEndDate);
+
+    for (let i = 0; i < imgs.length; i++) {
+        formData.append(`imgs`, imgs[i]);
+    }
+    
     return axios({
         url: "/api/v1/product/add",
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             "Access-Control-Allow-Origin": "*",
         },
-        data: JSON.stringify({ Category, AvailableUnits, DisplayName, Description, UnitPrice, Discount, DiscountEndDate,imgs }),
+        data: formData,
 
     })
 }
