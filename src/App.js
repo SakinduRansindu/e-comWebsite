@@ -12,6 +12,7 @@ import RegisterPage from './Pages/registerPage';
 import OrderState from './Pages/OrderState';
 import AddProduct from './Pages/AddProduct';
 import LandingPage from './Pages/LandingPage';
+import ViewProduct from './Pages/ViewProduct';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     element:<LandingPage></LandingPage>,
   },
   {
-    path:'/manageProducts',
+    path:'/manageOrders',
     element:<ProtectedRout authoriezedRoles={["seller"]}><div>sellers can add remove or change their products.</div></ProtectedRout>
   },
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
     element:<RegisterPage></RegisterPage>
   },
   {
-    path:'/products',
+    path:'/viewProduct/:pid',
+    element:<ViewProduct></ViewProduct>
+  },
+  {
+    path:'/AddProducts',
     element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {

@@ -39,6 +39,17 @@ export const ProductGet=()=> {
     })
 }
 
+export const GetProductDetails=(productId)=> {
+    return axios({
+        url: `/api/v1/product/getProductDetails?productId=${productId}`,
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+    })
+}
+
 
 export default function ProductsApi() {
   return (
