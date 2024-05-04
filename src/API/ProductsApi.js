@@ -7,7 +7,7 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
         url: "/api/v1/product/add",
         method: "POST",
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'multipart/form-data',
             "Access-Control-Allow-Origin": "*",
         },
         data: JSON.stringify({ Category, AvailableUnits, DisplayName, Description, UnitPrice, Discount, DiscountEndDate,imgs }),
@@ -18,6 +18,17 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
 export const ProductGet=()=> {
     return axios({
         url: "/api/v1/product/getProducts",
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+    })
+}
+
+export const GetProductDetails=(productId)=> {
+    return axios({
+        url: `/api/v1/product/getProductDetails?productId=${productId}`,
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
