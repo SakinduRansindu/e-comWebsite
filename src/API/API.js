@@ -57,6 +57,12 @@ export const testCreate = () => {
 
 export const validateLogin = async (email, password) => {
     console.log('validateLogin');
+    if (email==='' || password==='') {
+        return new Promise((resolve, reject) => {
+            console.error('Email and password are required');
+            reject({message:'Email and password are required'});
+        });
+    }
     const body_data = JSON.stringify({ email, password });
     const res = await axios({
         url: "/api/v1/auth/login",
