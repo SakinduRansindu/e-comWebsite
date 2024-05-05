@@ -12,7 +12,7 @@ export default function ProfileDisplay({
     return (
       <div
         className={
-          "d-flex align-items-center mx-3 dark2 rounded " + overwriteClassName
+          "d-flex align-items-center ms-auto mx-2 dark2 rounded " + overwriteClassName
         }
       >
         <img
