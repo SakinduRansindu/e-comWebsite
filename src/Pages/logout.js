@@ -10,7 +10,10 @@ export default function Logout() {
         userLogout().then((res)=>{
             console.log(res);
             setIsloged(false);
-        });
+        }).catch((err)=>{
+            console.log(err);
+            setIsloged(false);
+        })
     },[]);
 
   return (
