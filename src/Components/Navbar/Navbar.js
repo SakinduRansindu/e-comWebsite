@@ -61,7 +61,7 @@ export default function Navbar({ ...props }) {
               <ProfileDisplay
                 overwriteClassName="d-none d-lg-inline"
                 profilePicUrl=""
-                name={user.username}
+                name={user.name}
               />
               {user.isLogedIn ? (
                 <button
