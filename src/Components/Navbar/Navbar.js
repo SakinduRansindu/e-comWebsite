@@ -24,11 +24,7 @@ export default function Navbar({ ...props }) {
             MerchMora
           </a>
 
-          <ProfileDisplay
-            overwriteClassName="d-lg-none"
-            profilePicUrl=""
-            name={user.username}
-          />
+          <ProfileDisplay overwriteClassName="d-lg-none" profilePicUrl="" name={user.name} />
           <button
             className="navbar-toggler"
             type="button"
@@ -60,6 +56,7 @@ export default function Navbar({ ...props }) {
               })}
             </ul>
             <div className="d-lg-flex col-lg-3 justify-content-lg-end">
+
               <ProfileDisplay
                 overwriteClassName="d-none d-lg-inline"
                 profilePicUrl=""

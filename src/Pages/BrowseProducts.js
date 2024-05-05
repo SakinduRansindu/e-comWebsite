@@ -1,6 +1,8 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import ProductContainer from '../Components/ProductContainer/ProductContainer'
 import Template from './Template/Template'
+import { ProductGet } from '../API/ProductsApi';
+import defaultImg from '../Images/no-image.png';
 
 export default function BrowseProducts() {
 
@@ -10,27 +12,50 @@ export default function BrowseProducts() {
     'https://i.pinimg.com/564x/62/4e/25/624e25adaaf72f67a420431fe53ca373.jpg',
 ];
 
-const products = [
-  {
-    title: "T-shirt",
-    description: "description of the product",
-    Imgs: imgs,
-    productUrl: "about:blank",
-    seller: "mora",
-  },
-  {
-    title: "T-shirt 2",
-    description: "description of the product",
-    Imgs: imgs,
-    productUrl: "about:blank",
-    seller: "mora",
-  },
+// const products = [
+//   {
+//     title: "T-shirt",
+//     description: "description of the product",
+//     Imgs: imgs,
+//     productUrl: "about:blank",
+//     seller: "mora",
+//   },
+//   {
+//     title: "T-shirt 2",
+//     description: "description of the product",
+//     Imgs: imgs,
+//     productUrl: "about:blank",
+//     seller: "mora",
+//   },
 
-];
+// ];
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    getlist();
+  }, []);
+
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
+
+  const getlist=()=> {
+    ProductGet().then((res)=>{
+      console.log(res.data.products);
+      let tmp=[];
+      res.data.products.map(element => {
+        tmp.push({title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId});
+      });
+      // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
+      setProduct([...tmp]);
+    }).catch((err)=>{
+      console.error(err);
+    });
+  }
 
   return (
     <Template renderSlideBar={true}>
-        <ProductContainer ContainerTitle='Title' products={products}></ProductContainer>
+        <ProductContainer ContainerTitle='' products={products}></ProductContainer>
     </Template>
   )
 }
