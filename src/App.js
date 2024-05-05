@@ -14,6 +14,7 @@ import AddProduct from './Pages/AddProduct';
 import LandingPage from './Pages/LandingPage';
 import ViewProduct from './Pages/ViewProduct';
 import SellerOrdersPage from './Pages/SellerOrdersPage';
+import BuyItem from './Pages/BuyItem';
 
 
 const router = createBrowserRouter([
@@ -50,8 +51,8 @@ const router = createBrowserRouter([
     element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
-    path: "/payments",
-    element: <div>customer registration form</div>,
+    path: "/payments/:pid",
+    element: <BuyItem></BuyItem>,
   },
   {
     path: "/login",

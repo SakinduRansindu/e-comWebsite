@@ -5,12 +5,10 @@ import Template from './Template/Template';
 import OrderListWrapper from '../Components/OrderListWrapper/OrderListWrapper';
 
 export default function SellerOrdersPage() {
-    const {user,CheckSessionErrors} = AuthData();
+    const {CheckSessionErrors} = AuthData();
     const [orders,setOrders] = useState([]);
 
     useEffect(() => {
-
-
         SellerOrders(1).then((res)=>{
             console.log(res);
             setOrders(res.data.purchases);
@@ -27,7 +25,7 @@ export default function SellerOrdersPage() {
       <div>
           {JSON.stringify(orders)}
       </div>
-      <OrderListWrapper></OrderListWrapper>
+      <OrderListWrapper data={orders}></OrderListWrapper>
     </Template>
   )
 }
