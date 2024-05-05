@@ -20,7 +20,11 @@ export default class ProductContainer extends Component {
                 Imgs={product.Imgs}
                 description={product.description}
                 title={product.title}
+                price={product.Price}
                 productUrl={product.productUrl}
+                isDiscountApplied={product.isDiscountApplied}
+                availableUnits={product.availableUnits}
+                priceBeforeDiscount={product.priceBeforeDiscount}
                 seller={product.seller}
               ></ProductItem>
             ))}

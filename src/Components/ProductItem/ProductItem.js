@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "../Carousel/Carousel";
+import Button from "../../button.js";
 
 export default function ProductItem({ ...props }) {
   return (
@@ -12,16 +13,41 @@ export default function ProductItem({ ...props }) {
           onClick={null}
         ></Carousel>
         <div className="card-body d-flex flex-column">
-          <h5 className="card-title">{props.title}</h5>
+          <h3 className="card-title">{props.title}</h3>
 
           <p className="card-text">{props.description}</p>
 
-          <div className="card-bodyd-flex py-2 flex-column">
-            <p className="card-text">
-              <small class="text-body-secondary">by {props.seller}</small>
+          <h4 className="card-text text-white text-bold">LKR {props.price}</h4>
+          {props.isDiscountApplied && (
+            <span className="text-bold text-body-secondary display-inline">
+              <del>LKR {props.priceBeforeDiscount}</del>
+            </span>
+          )}
+          {props.availableUnits !== undefined && (
+            <p className="card-text text-body-secondary">
+              {props.availableUnits === 0 ? (
+                <small className="text-danger text-bold">Out of Stock</small>
+              ) : (
+                <small>
+                  {props.availableUnits < 5
+                    ? `Only ${props.availableUnits} Units Left`
+                    : `${props.availableUnits} Units Left`}
+                </small>
+              )}
             </p>
-            <a href={props.productUrl} className="btn btn-primary m-0">
-              Buy Now
+          )}
+          <div className="py-0 flex-column">
+            <p className="card-text mb-1">
+              <small class="text-bold text-body-secondary">by {props.seller}</small>
+            </p>
+
+            <a href={props.productUrl}>
+              { props.availableUnits && props.availableUnits > 0 ? (
+                <Button label="Buy Now" className="btn btn-primary m-0" />
+              ) : (
+                <Button label="View" className="btn btn-primary m-0" />
+
+              )}              
             </a>
           </div>
         </div>

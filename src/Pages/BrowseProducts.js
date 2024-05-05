@@ -3,6 +3,7 @@ import ProductContainer from '../Components/ProductContainer/ProductContainer'
 import Template from './Template/Template'
 import { ProductGet } from '../API/ProductsApi';
 import defaultImg from '../Images/no-image.png';
+import { calculateDiscount } from '../API/ProductsApi';
 
 export default function BrowseProducts() {
 
@@ -53,7 +54,20 @@ export default function BrowseProducts() {
         else{
           imgs.push(defaultImg);
         }
-        tmp.push({title:element.DisplayName,description:element.Description,Imgs:imgs,productUrl:"/viewProduct/"+element.ProductId,seller:element.SId});
+        const { price, isDiscountApplied } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
+        tmp.push({
+          title:element.DisplayName,
+          description:element.Description,
+          Imgs:imgs,
+          productUrl:"/viewProduct/"+element.ProductId,
+          seller:element.Seller.DisplayName, 
+          Price:price, 
+          isDiscountApplied: isDiscountApplied,
+          priceBeforeDiscount: element.UnitPrice, 
+          availableUnits: element.AvailableUnits, 
+          category: element.Category, 
+          productId: element.ProductId
+        });
       });
       // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
       setProduct([...tmp]);
