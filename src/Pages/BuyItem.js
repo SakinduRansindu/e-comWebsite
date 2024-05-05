@@ -10,7 +10,7 @@ export default function BuyItem() {
   return (
     <Template renderSlideBar={false}>
         <ProductDetails minimalData={true} pid={params.pid}></ProductDetails>
-        <PaymentForm></PaymentForm>
+        <PaymentForm pid={params.pid}></PaymentForm>
     </Template>
   )
 }

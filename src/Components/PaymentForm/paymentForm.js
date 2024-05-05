@@ -2,9 +2,13 @@ import React, { useState,useEffect } from 'react';
 import TextInput from '../Input/TextInput';
 import NumberInput from '../Input/NumberInput';
 import Alert from '../Alert/Alert';
+import {PurchaseProduct} from '../../API/ProductsApi';
+import { AuthData} from '../../Components/AuthWrapper/AuthWrapper';
 
 
-function PaymentForm({maxUnits, price}) {
+function PaymentForm({pid,maxUnits=10}) {
+
+  const {CheckSessionErrors} = AuthData();
 
   const [name, setName] = useState("");
   const [units, setUnits] = useState(1);
@@ -40,9 +44,53 @@ function PaymentForm({maxUnits, price}) {
     },5000);
   },[message]);
 
-  const register=(e)=>{
-    e.preventDefault();
+  const validate=()=>{
+    if(name.length<1){
+      setMessage({color:'alert-danger',message:'Name is required',isSuccess:false});
+      setDisplay(true);
+      return false;
+    }
+    if(units<1){
+      setMessage({color:'alert-danger',message:'Invalid Units',isSuccess:false});
+      setDisplay(true);
+      return false;
+    }
+    if(cardNumber.length<16){
+      setMessage({color:'alert-danger',message:'Invalid Card Number',isSuccess:false});
+      setDisplay(true);
+      return false;
+    }
+    if(cvc.length<3){
+      setMessage({color:'alert-danger',message:'Invalid CVC',isSuccess:false});
+      setDisplay(true);
+      return false;
+    }
+    if(expiryDate.length<5){
+      setMessage({color:'alert-danger',message:'Invalid Expiry Date',isSuccess:false});
+      setDisplay(true);
+      return false;
+    }
+    return true;
+  }
 
+  const pay=(e)=>{
+    e.preventDefault();
+    if(validate()){
+      PurchaseProduct(pid,units).then((res)=>{
+        console.log(res);
+        setMessage({color:'alert-success',message:'Payment Success',isSuccess:true});
+        setDisplay(true);
+        setTimeout(()=>{
+        clear();
+        }
+        ,5000);
+      }).catch((err)=>{
+        console.error(err);
+        setMessage({color:'alert-danger',message:err.message,isSuccess:false});
+        setDisplay(true);
+        CheckSessionErrors(err);
+      });
+    }
 
     return false;
   }
@@ -67,7 +115,7 @@ function PaymentForm({maxUnits, price}) {
         value={units}
         onChange={(e) => setUnits(e.target.value)}
         isRequired={true}
-        max={10}
+        max={maxUnits}
         min={1}
         placeholder="Units"/>
 
@@ -99,7 +147,7 @@ function PaymentForm({maxUnits, price}) {
           {display?<Alert title={message.isSuccess?"Success":"Error"} message={message.message} type={message.color}></Alert>:null}
           <div className="col-md-12">
               <button disabled={display} type="button" onClick={(e)=>clear()} className="btn btn-danger">Clear</button>
-              <button disabled={display} className="btn btn-success float-end" onClick={(e)=>register(e)}>Register</button>
+              <button disabled={display} className="btn btn-success float-end" onClick={(e)=>pay(e)}>Pay</button>
           </div>
       </div>
     </form>

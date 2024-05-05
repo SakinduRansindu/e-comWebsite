@@ -41,6 +41,7 @@ export const SetSellerOrderStatus = (id,state)=>{
     })
 }
 
+
 export const ProductGet=()=> {
     return axios({
         url: "/api/v1/product/getProducts",
@@ -72,6 +73,18 @@ export const GetProductDetails=(productId)=> {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
         },
+    })
+}
+
+export const PurchaseProduct = (ProductId,Units)=>{
+    return axios({
+        url: `/api/v1/purchase`,
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify({ProductId,Units})
     })
 }
 
