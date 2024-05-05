@@ -1,6 +1,6 @@
 import React from "react";
 import { AuthData } from "../AuthWrapper/AuthWrapper";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
 
 export default function Navbar({ ...props }) {
@@ -13,16 +13,15 @@ export default function Navbar({ ...props }) {
     { name: "Add Products", link: "/AddProducts", allowed:["seller"]},
     { name: "My Orders", link: "/orderStatus", allowed:["customer"]},
     { name: "Register", link: "/register", allowed:["not-logged"]},
-
   ];
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg bg-body-tertiary rounded sticky-top"
+        className="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow"
         aria-label="Eleventh navbar example"
       >
         <div className="container-fluid">
-          <a className="navbar-brand" href="/browse">
+          <a className="navbar-brand" href="/">
             MerchMora
           </a>
 
@@ -38,7 +37,7 @@ export default function Navbar({ ...props }) {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          
+
           <div className="collapse navbar-collapse" id="navbarsExample09">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               {navLinks.map((element, index) => {
@@ -58,15 +57,27 @@ export default function Navbar({ ...props }) {
               })}
             </ul>
             <div className="d-lg-flex col-lg-3 justify-content-lg-end">
-          <ProfileDisplay overwriteClassName="d-none d-lg-inline" profilePicUrl="" name={user.name} />
-              {
-              user.isLogedIn ?(
-               <button onClick={()=>navigate('/logout')} className="btn btn-primary">Logout</button>
-              ):(
-                  <button onClick={()=>navigate('/login')} className="btn btn-primary">Login</button>
-              )
-            }
-                
+
+              <ProfileDisplay
+                overwriteClassName="d-none d-lg-inline"
+                profilePicUrl=""
+                name={user.username}
+              />
+              {user.isLogedIn ? (
+                <button
+                  onClick={() => navigate("/logout")}
+                  className="btn btn-primary"
+                >
+                  Logout
+                </button>
+              ) : (
+                <button
+                  onClick={() => navigate("/login")}
+                  className="btn btn-primary"
+                >
+                  Login
+                </button>
+              )}
             </div>
           </div>
         </div>

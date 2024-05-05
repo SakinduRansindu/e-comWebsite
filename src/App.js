@@ -18,24 +18,28 @@ import SellerOrdersPage from './Pages/SellerOrdersPage';
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<LandingPage></LandingPage>,
+    path: "/",
+    element: <LandingPage></LandingPage>,
   },
   {
     path:'/manageOrders',
     element:<ProtectedRout authoriezedRoles={["seller"]}><SellerOrdersPage></SellerOrdersPage>  </ProtectedRout>
   },
   {
-    path:'/orderStatus',
-    element:<ProtectedRout authoriezedRoles={["customer"]}><OrderState></OrderState></ProtectedRout>
+    path: "/orderStatus",
+    element: (
+      <ProtectedRout authoriezedRoles={["customer"]}>
+        <OrderState></OrderState>
+      </ProtectedRout>
+    ),
   },
   {
-    path:'/browse',
-    element:<BrowseProducts></BrowseProducts>
+    path: "/browse",
+    element: <BrowseProducts></BrowseProducts>,
   },
   {
-    path:'/register',
-    element:<RegisterPage></RegisterPage>
+    path: "/register",
+    element: <RegisterPage></RegisterPage>,
   },
   {
     path:'/viewProduct/:pid',
@@ -46,23 +50,23 @@ const router = createBrowserRouter([
     element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
-    path:'/payments',
-    element:<div>customer registration form</div>
+    path: "/payments",
+    element: <div>customer registration form</div>,
   },
   {
-    path:'/login',
-    element:<Login/>
+    path: "/login",
+    element: <Login />,
   },
   {
-    path:'/logout',
-    element:<Logout/>
-  }
+    path: "/logout",
+    element: <Logout />,
+  },
 ]);
 
 function App() {
   return (
     <AuthWrapper>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </AuthWrapper>
   );
 }
