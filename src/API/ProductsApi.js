@@ -28,6 +28,18 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
     })
 }
 
+export const SetSellerOrderStatus = (id,state)=>{
+    return axios({
+        url: `/api/v1/order/setState/${id}`,
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify({state})
+    })
+}
+
 export const ProductGet=()=> {
     return axios({
         url: "/api/v1/product/getProducts",
