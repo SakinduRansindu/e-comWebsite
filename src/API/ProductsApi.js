@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
 
 
 export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, UnitPrice, Discount, DiscountEndDate,imgs )=> {
@@ -25,6 +26,18 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
         },
         data: formData,
 
+    })
+}
+
+export const SetSellerOrderStatus = (id,state)=>{
+    return axios({
+        url: `/api/v1/order/setState/${id}`,
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify({state})
     })
 }
 
@@ -60,6 +73,21 @@ export const GetProductDetails=(productId)=> {
             "Access-Control-Allow-Origin": "*",
         },
     })
+}
+
+export const calculateDiscount=(unitprice,discountPersentage,DiscountEndDate)=>{
+    const discountEnd  = moment(DiscountEndDate, 'YYYY-MM-DDTHH:mm:ss.SSSZ');
+    const now = moment();
+    if(discountEnd.isValid() && now.isBefore(discountEnd) && discountPersentage>0 && discountPersentage<=100){
+        console.log("discount valied");
+        return {price:(unitprice * (100-discountPersentage) / 100),isDiscountApplied:true};
+    }
+    else{
+        console.log("discount not valied");
+        return {price:unitprice,isDiscountApplied:false};
+    }
+    
+    
 }
 
 
