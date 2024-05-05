@@ -23,7 +23,7 @@ export default function SellerOrdersPage() {
     <Template>
       {/* (state !== 'pending' && state !== 'shipped' && state !== 'delivered' && state !== 'cancelled') */}
       <div>
-          {JSON.stringify(orders)}
+          {/* {JSON.stringify(orders)} */}
       </div>
       <OrderListWrapper data={orders}></OrderListWrapper>
     </Template>

@@ -8,11 +8,34 @@ import { AuthData } from '../AuthWrapper/AuthWrapper'
 export default function OrderListWrapper({data}) {
   const {user} = AuthData();
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { 
+      year: 'numeric', 
+      month: 'short', 
+      day: '2-digit', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit', 
+      hour12: false, 
+      timeZone: 'UTC' 
+    };
+    return date.toLocaleString('en-US', options);
+  };
+
   if(user.role === 'seller' && data.length > 0){
     return (
       <div className="list-group">
         {data.map((order)=>{
-          return <SellerOrderListItem name={order.productName} state={order.state} date={order.date}/>
+          return <SellerOrderListItem 
+          orderId={order.PurchaseId}
+          name={order.Product.DisplayName} 
+          productId={order.Product.ProductId} 
+          customerName={order.User.FirstName + ' ' + order.User.LastName}
+          phone_No={order.User.Phone_No}
+          PurchaseDateTime={formatDate(order.PurchaseDateTime)}
+          state={order.state} 
+          date={order.date}/>
         })}
       </div>
     )
