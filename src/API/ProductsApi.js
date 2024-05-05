@@ -41,6 +41,16 @@ export const SetSellerOrderStatus = (id,state)=>{
     })
 }
 
+export const CustomerOrdersState = ()=>{
+    return axios({
+        url: `/api/v1/order/customer`,
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+    })
+}
 
 export const ProductGet=()=> {
     return axios({
