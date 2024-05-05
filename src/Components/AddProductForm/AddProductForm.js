@@ -18,11 +18,14 @@ export default function AddProductForm() {
   const [discount, setDiscount] = useState("");
   const [discountEndDate, setDiscountEndDate] = useState("");
   const [images, setImages] = useState([]);
-  const [DisplayName, setDisplayName] = useState('');
-  const [category, setCategory] = useState('');
-  const [message, setMessage] = useState({ color: 'alert-danger', message: '', isSuccess: false });
+  const [DisplayName, setDisplayName] = useState("");
+  const [category, setCategory] = useState("");
+  const [message, setMessage] = useState({
+    color: "alert-danger",
+    message: "",
+    isSuccess: false,
+  });
   const [display, setDisplay] = useState(false);
-
 
   const clear = () => {
     setDescription("");
@@ -33,13 +36,13 @@ export default function AddProductForm() {
     setImages([]);
     setDisplayName("");
     setCategory("");
-  }
+  };
 
   let timeout;
   useEffect(() => {
     timeout = setTimeout(() => {
       if (timeout) {
-        console.log('clearing timeout');
+        console.log("clearing timeout");
         clearTimeout(timeout);
       }
       setDisplay(false);
@@ -49,14 +52,26 @@ export default function AddProductForm() {
     }, 5000);
   }, [message]);
 
-
   const addProduct = (e) => {
     e.preventDefault();
     console.log(images);
-  ProductAdd(category, availableUnits, DisplayName, description, unitPrice, discount, discountEndDate, images)
+    ProductAdd(
+      category,
+      availableUnits,
+      DisplayName,
+      description,
+      unitPrice,
+      discount,
+      discountEndDate,
+      images
+    )
       .then((res) => {
         console.log(res.data.message);
-        setMessage({ color: 'alert-success', message: res.data.message, isSuccess: true });
+        setMessage({
+          color: "alert-success",
+          message: res.data.message,
+          isSuccess: true,
+        });
         setDisplay(true);
       })
       .catch((err) => {
@@ -65,10 +80,9 @@ export default function AddProductForm() {
         setMessage({ color: 'alert-danger', message: err.message, isSuccess: false });
         setDisplay(true);
       });
-  }
+  };
 
   return (
-
     <form className="container mx-auto my-3 border dark2 rounded p-3">
       <h1> Add a product</h1>
       <MultiImageSelect
@@ -76,9 +90,7 @@ export default function AddProductForm() {
         onChange={(e) => setImages(e.target.files)}
         isRequired={false}
         placeholder="Product Name"
-      >
-      </MultiImageSelect>
-
+      ></MultiImageSelect>
 
       <TextInput
         type="text"
@@ -140,14 +152,29 @@ export default function AddProductForm() {
       ></TextInput>
 
       <div className="row">
-        {display ? <Alert title={message.isSuccess ? "Success" : "Error"} message={message.message} type={message.color}></Alert> : null}
+        {display ? (
+          <Alert
+            title={message.isSuccess ? "Success" : "Error"}
+            message={message.message}
+            type={message.color}
+          ></Alert>
+        ) : null}
         <div className="col-md-12">
-          <button type="button" onClick={(e) => clear()} className="btn btn-danger">Clear</button>
-          <button className="btn btn-success float-end" onClick={(e) => addProduct(e)}>Add</button>
+          <button
+            type="button"
+            onClick={(e) => clear()}
+            className="btn btn-danger"
+          >
+            Clear
+          </button>
+          <button
+            className="btn btn-success float-end"
+            onClick={(e) => addProduct(e)}
+          >
+            Add
+          </button>
         </div>
       </div>
-
     </form>
-  )
+  );
 }
-
