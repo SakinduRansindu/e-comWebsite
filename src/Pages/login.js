@@ -6,12 +6,12 @@ import Template from "./Template/Template";
 import Alert from "../Components/Alert/Alert";
 
 export default function Login() {
-  const { userLogin } = AuthData();
+  const { userLogin,user,clearMsgs } = AuthData();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState({color:'alert-danger',message:'',isSuccess:false});
+  const [message, setMessage] = useState({color:'alert-danger',message:'',hasError:false});
   const [display,setDisplay] = useState(false);
 
   const clear=()=>{
@@ -19,6 +19,15 @@ export default function Login() {
     setEmail("");
     setDisplay(false);
   }
+
+  useEffect(()=>{
+    console.log(user.loginMsg);
+    if(user.loginMsg!=''){
+      setMessage({color:'alert-warning',message:user.loginMsg,hasError:true});
+      setDisplay(true);
+      clearMsgs();
+    }
+  },[]);
 
   let timeout;
     useEffect(()=>{
@@ -34,14 +43,14 @@ export default function Login() {
     e.preventDefault();
     userLogin(email, password)
       .then((res) => {
-        setMessage({color:'alert-success',message:res,isSuccess:true});
+        setMessage({color:'alert-success',message:res,hasError:false});
         setDisplay(true);
         console.log(res);
         navigate("/browse");
       })
       .catch((err) => {
         console.error(err);
-        setMessage({color:'alert-danger',message:err,isSuccess:false});
+        setMessage({color:'alert-danger',message:err,hasError:true});
         setPassword("");
         setDisplay(true);
       });
@@ -67,8 +76,8 @@ export default function Login() {
           placeholder="Password"
         ></TextInput>
 
-        <div className="row">
-          {display ? <Alert title={message.isSuccess ? "Success" : "Error"} message={message.message} type={message.color}></Alert> : null}
+        <div className="row" style={{transition:'height 1s'}}>
+          {display ? <Alert title={!message.hasError ? "Success" : "Error"} message={message.message} type={message.color}></Alert> : <div className="my-4"></div>}
           <div className="col-md-12">
             <button disabled={display} type="button" onClick={(e) => clear()} className="btn btn-danger">Clear</button>
             <button disabled={display} className="btn btn-success float-end" onClick={(e) => checkLogin(e)}>Login</button>

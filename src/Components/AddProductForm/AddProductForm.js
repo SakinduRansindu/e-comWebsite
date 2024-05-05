@@ -1,13 +1,17 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import MultiImageSelect from "../MultiImageSelect/MultiImageSelect";
-import TextInput from "../Input/TextInput";
-import NumberInput from "../Input/NumberInput";
-import TextAreaInput from "../Input/TextAreaInput";
-import Alert from "../Alert/Alert";
-import { ProductAdd } from "../../API/ProductsApi";
+import React from 'react'
+import { useState, useEffect } from 'react';
+import MultiImageSelect from '../MultiImageSelect/MultiImageSelect';
+import TextInput from '../Input/TextInput';
+import NumberInput from '../Input/NumberInput';
+import TextAreaInput from '../Input/TextAreaInput';
+import Alert from '../Alert/Alert';
+import {ProductAdd} from '../../API/ProductsApi';
+import {AuthData} from '../AuthWrapper/AuthWrapper';
+
 
 export default function AddProductForm() {
+  const { CheckSessionErrors } = AuthData();
+
   const [description, setDescription] = useState("");
   const [unitPrice, setUnitPrice] = useState("");
   const [availableUnits, setAvailableUnits] = useState("");
@@ -71,12 +75,9 @@ export default function AddProductForm() {
         setDisplay(true);
       })
       .catch((err) => {
-        console.error(err.response.data.message);
-        setMessage({
-          color: "alert-danger",
-          message: err.response.data.message,
-          isSuccess: false,
-        });
+        console.error(err.message);
+        CheckSessionErrors(err);
+        setMessage({ color: 'alert-danger', message: err.message, isSuccess: false });
         setDisplay(true);
       });
   };
@@ -86,7 +87,7 @@ export default function AddProductForm() {
       <h1> Add a product</h1>
       <MultiImageSelect
         label="Product Images"
-        onChange={(e) => setImages(e.target.Files)}
+        onChange={(e) => setImages(e.target.files)}
         isRequired={false}
         placeholder="Product Name"
       ></MultiImageSelect>
