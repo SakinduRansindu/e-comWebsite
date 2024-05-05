@@ -39,6 +39,18 @@ export const ProductGet=()=> {
     })
 }
 
+export const SellerOrders =(SId)=> {
+    return axios({
+        url: '/api/v1/order/',
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "*",
+        },
+        data: JSON.stringify({SId})
+    })
+}
+
 export const GetProductDetails=(productId)=> {
     return axios({
         url: `/api/v1/product/getProductDetails?productId=${productId}`,

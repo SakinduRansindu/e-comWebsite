@@ -13,6 +13,8 @@ import OrderState from './Pages/OrderState';
 import AddProduct from './Pages/AddProduct';
 import LandingPage from './Pages/LandingPage';
 import ViewProduct from './Pages/ViewProduct';
+import SellerOrdersPage from './Pages/SellerOrdersPage';
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/manageOrders',
-    element:<ProtectedRout authoriezedRoles={["seller"]}><div>sellers can add remove or change their products.</div></ProtectedRout>
+    element:<ProtectedRout authoriezedRoles={["seller"]}><SellerOrdersPage></SellerOrdersPage>  </ProtectedRout>
   },
   {
     path:'/orderStatus',

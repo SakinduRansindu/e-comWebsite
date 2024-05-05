@@ -6,10 +6,11 @@ import NumberInput from '../Input/NumberInput';
 import TextAreaInput from '../Input/TextAreaInput';
 import Alert from '../Alert/Alert';
 import {ProductAdd} from '../../API/ProductsApi';
-
+import {AuthData} from '../AuthWrapper/AuthWrapper';
 
 
 export default function AddProductForm() {
+  const { CheckSessionErrors } = AuthData();
 
   const [description, setDescription] = useState("");
   const [unitPrice, setUnitPrice] = useState("");
@@ -60,6 +61,7 @@ export default function AddProductForm() {
       })
       .catch((err) => {
         console.error(err.message);
+        CheckSessionErrors(err);
         setMessage({ color: 'alert-danger', message: err.message, isSuccess: false });
         setDisplay(true);
       });
