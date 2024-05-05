@@ -1,7 +1,9 @@
 import React from 'react'
 import Template from './Template/Template'
+import {calculateDiscount} from '../API/ProductsApi'
 
 export default function OrderState() {
+  console.log(calculateDiscount(100,10,"2024-05-05T00:00:00.000Z"));
   return (
     <Template renderSlideBar={false}>
       <div className="list-group">
