@@ -65,7 +65,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
   }
   else if(minimalData && state === 'loaded'){
     return (
-      <div className="card">
+      <div className="card w-50 mx-auto bg-success">
         <div className="container m-1">
           <h4>{product.DisplayName}</h4>
           <p>Discount: {product.Discount}%</p>
