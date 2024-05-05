@@ -52,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/payments/:pid",
-    element: <BuyItem></BuyItem>,
+    element: <ProtectedRout authoriezedRoles={["seller","customer"]}><BuyItem></BuyItem></ProtectedRout>,
   },
   {
     path: "/login",
