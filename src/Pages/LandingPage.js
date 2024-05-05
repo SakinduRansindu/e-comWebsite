@@ -6,7 +6,7 @@ import Image from "../Images/image1.png";
 export default function LandingPage() {
   return (
     <Template renderSlideBar={false}>
-      <div>
+      {/*<div>
         <img
           src={HeaderImage}
           alt="landing page"
@@ -26,7 +26,22 @@ export default function LandingPage() {
         >
           MerchMora
         </h1>
-      </div>
+        </div>*/}
+
+      <main
+        class="px-3"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
+          height: "90vh",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          margin: "-80px -12px 0",
+        }}
+      >
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+          <h1 class="display-1 fw-bold text-body-emphasis ">MerchMora</h1>
+        </div>
+      </main>
 
       <div class="container col-xxl-8 px-4 py-5">
         <div class="p-5 mb-4 bg-body-tertiary rounded-3">
