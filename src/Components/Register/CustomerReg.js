@@ -2,7 +2,7 @@ import React from 'react'
 import TextInput from '../Input/TextInput'
 import ProfilePictureSet from '../ProfilePicture/ProfilePictureSet';
 import { useState,useEffect } from 'react'
-import { createUser,testCreate } from '../../API/API';
+import { createUser } from '../../API/API';
 import Alert from '../Alert/Alert';
 
 export default function CustomerReg() {

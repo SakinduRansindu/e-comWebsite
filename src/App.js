@@ -12,50 +12,62 @@ import RegisterPage from './Pages/registerPage';
 import OrderState from './Pages/OrderState';
 import AddProduct from './Pages/AddProduct';
 import LandingPage from './Pages/LandingPage';
+import ViewProduct from './Pages/ViewProduct';
+import SellerOrdersPage from './Pages/SellerOrdersPage';
+import BuyItem from './Pages/BuyItem';
+
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element:<LandingPage></LandingPage>,
+    path: "/",
+    element: <LandingPage></LandingPage>,
   },
   {
-    path:'/manageProducts',
-    element:<ProtectedRout authoriezedRoles={["seller"]}><div>sellers can add remove or change their products.</div></ProtectedRout>
+    path:'/manageOrders',
+    element:<ProtectedRout authoriezedRoles={["seller"]}><SellerOrdersPage></SellerOrdersPage>  </ProtectedRout>
   },
   {
-    path:'/orderStatus',
-    element:<ProtectedRout authoriezedRoles={["customer"]}><OrderState></OrderState></ProtectedRout>
+    path: "/orderStatus",
+    element: (
+      <ProtectedRout authoriezedRoles={["customer"]}>
+        <OrderState></OrderState>
+      </ProtectedRout>
+    ),
   },
   {
-    path:'/browse',
-    element:<BrowseProducts></BrowseProducts>
+    path: "/browse",
+    element: <BrowseProducts></BrowseProducts>,
   },
   {
-    path:'/register',
-    element:<RegisterPage></RegisterPage>
+    path: "/register",
+    element: <RegisterPage></RegisterPage>,
   },
   {
-    path:'/products',
+    path:'/viewProduct/:pid',
+    element:<ViewProduct></ViewProduct>
+  },
+  {
+    path:'/AddProducts',
     element:<ProtectedRout authoriezedRoles={["seller"]}><AddProduct></AddProduct></ProtectedRout>
   },
   {
-    path:'/payments',
-    element:<div>customer registration form</div>
+    path: "/payments/:pid",
+    element: <ProtectedRout authoriezedRoles={["seller","customer"]}><BuyItem></BuyItem></ProtectedRout>,
   },
   {
-    path:'/login',
-    element:<Login/>
+    path: "/login",
+    element: <Login />,
   },
   {
-    path:'/logout',
-    element:<Logout/>
-  }
+    path: "/logout",
+    element: <Logout />,
+  },
 ]);
 
 function App() {
   return (
     <AuthWrapper>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </AuthWrapper>
   );
 }
