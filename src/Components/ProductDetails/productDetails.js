@@ -13,7 +13,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
 
 
   useEffect(() => {
-    if(!minimalData && product.ProductImgs){
+    if(!minimalData && product?.ProductImgs){
     let tmp = [];
     console.log(product);
     for (let i = 0; i < product.ProductImgs.length; i++) {
@@ -22,12 +22,16 @@ const ProductDetails = ({ pid, minimalData = false }) => {
     setImgs([...tmp]);
     setstate('loaded');
   }
+  else if(minimalData && product?.DisplayName){
+    console.log(product);
+    setstate('loaded');
+  }
   }, [product]);
 
   useEffect(() => {
       GetProductDetails(pid).then((res)=>{
           setProduct(res.data.product);
-          console.log(res.data.product);
+          console.log(res.data);
       }).catch((err)=>{
           console.error(err);
           setstate('error');
