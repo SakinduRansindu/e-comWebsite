@@ -44,7 +44,7 @@ export default function LandingPage() {
       </main>
 
       <div class="container col-xxl-8 px-4 py-5">
-        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <div class="p-5 mb-4 bg-primary-subtle rounded-3">
           <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">
               Welcome to MerchMora <br></br> E-commerce Store!
@@ -52,7 +52,7 @@ export default function LandingPage() {
             <p class="col-md-8 fs-4">
               Shop the latest Mora trends and discover amazing deals.
             </p>
-            <a className="btn btn-primary btn-lg" href="/browse">
+            <a className="btn btn-outline-warning btn-lg" href="/browse">
               Shop Now
             </a>
           </div>
