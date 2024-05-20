@@ -2,6 +2,7 @@ import React from "react";
 import Template from "./Template/Template";
 import HeaderImage from "../Images/ecommerce.png";
 import Image from "../Images/image1.png";
+import logo2 from "../Images/logo2.png";
 
 export default function LandingPage() {
   return (
@@ -39,7 +40,7 @@ export default function LandingPage() {
         }}
       >
         <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-          <h1 class="display-1 fw-bold text-body-emphasis ">MerchMora</h1>
+          <img src={logo2} width="45%"  />
         </div>
       </main>
 
