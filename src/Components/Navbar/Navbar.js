@@ -2,6 +2,7 @@ import React from "react";
 import { AuthData } from "../AuthWrapper/AuthWrapper";
 import { useNavigate } from "react-router-dom";
 import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
+import logo1 from "../../Images/logo1.png";
 
 export default function Navbar({ ...props }) {
   const { user } = AuthData();
@@ -23,7 +24,7 @@ export default function Navbar({ ...props }) {
         >
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
-              MerchMora
+              <img src={logo1} height="45" style={{objectFit: 'cover',margin: 0,padding: 0,border: 'none',}}/>
             </a>
 
             <ProfileDisplay
