@@ -69,55 +69,11 @@ export default function Login() {
 
   return (
     <Template RedirectIfLoged="/browse" renderSlideBar={false}>
-      <form className="container mx-auto my-3 border dark2 rounded p-3">
-        <h1>Login page</h1>
-        <TextInput
-          type="email"
-          label="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          isRequired={true}
-          placeholder="Email"
-        ></TextInput>
-        <TextInput
-          type="password"
-          label="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        ></TextInput>
+      <form className="container mx-auto my-3 border rounded p-3">
+        {/* <h1>Login page</h1> */}
+        
 
-        <div className="row" style={{ transition: "height 1s" }}>
-          {display ? (
-            <Alert
-              title={!message.hasError ? "Success" : "Error"}
-              message={message.message}
-              type={message.color}
-            ></Alert>
-          ) : (
-            <div className="my-4"></div>
-          )}
-          <div className="col-md-12">
-            <button
-              disabled={display}
-              type="button"
-              onClick={(e) => clear()}
-              className="btn btn-danger"
-            >
-              Clear
-            </button>
-            <button
-              disabled={display}
-              className="btn btn-success float-end"
-              onClick={(e) => checkLogin(e)}
-            >
-              Login
-            </button>
-          </div>
-        </div>
-      </form>
-
-      <section
+        <section
         class=" py-3 py-md-5 py-xl-8"
         /*style={{ backgroundImage: `url(${backgroundImage})` }}*/
       >
@@ -138,12 +94,9 @@ export default function Login() {
                   </div>
                   <hr class="border-white-subtle mb-4" />
                   <h2 class="h1 mb-4">
-                    We make digital products that drive you to stand out.
-                  </h2>
+                  We create Mora merch that makes you proud to wear.                  </h2>
                   <p class="lead mb-5">
-                    We write words, take photos, make videos, and interact with
-                    artificial intelligence.
-                  </p>
+                  We design apparel, accessories, and gifts that showcase Mora spirit and unique style.</p>
                   <div class="text-endx">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +131,9 @@ export default function Login() {
                             class="form-control"
                             name="email"
                             id="email"
+                            value={email}
                             placeholder="name@example.com"
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                           />
                           <label for="email" class="form-label">
@@ -193,8 +148,10 @@ export default function Login() {
                             class="form-control"
                             name="password"
                             id="password"
+                            value={password}
                             placeholder="Password"
                             required
+                            onChange={(e) => setPassword(e.target.value)}
                           />
                           <label for="password" class="form-label">
                             Password
@@ -220,8 +177,9 @@ export default function Login() {
                       </div>
                       <div class="col-12">
                         <div class="d-grid">
-                          <button
+                        <button
                             class="btn btn-primary btn-lg"
+                            style={{ backgroundColor: "#121f31" }}
                             disabled={display}
                             type="submit"
                             onClick={(e) => checkLogin(e)}
@@ -229,8 +187,25 @@ export default function Login() {
                             Log in now
                           </button>
                         </div>
+                        {/* <button
+                        disabled={display}
+                        type="button"
+                        onClick={(e) => clear()}
+                        className="btn btn-danger my-3"
+                      >
+                        Clear
+                      </button> */}
                       </div>
                     </div>
+                    {display ? (
+                        <Alert
+                          title={!message.hasError ? "Success" : "Error"}
+                          message={message.message}
+                          type={message.color}
+                        ></Alert>
+                      ) : (
+                        <div className="my-4"></div>
+                      )}
                   </form>
                   <div class="row">
                     <div class="col-12">
@@ -245,6 +220,9 @@ export default function Login() {
           </div>
         </div>
       </section>
+      </form>
+
+
     </Template>
   );
 }
