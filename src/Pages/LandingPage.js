@@ -7,7 +7,7 @@ import Image2 from "../Images/image2.png";
 export default function LandingPage() {
   return (
     <Template renderSlideBar={false}>
-      <div>
+      {/*<div>
         <img
           src={HeaderImage}
           alt="landing page"
@@ -27,17 +27,34 @@ export default function LandingPage() {
         >
           MerchMora
         </h1>
-      </div>
+        </div>*/}
+
+      <main
+        class="px-3"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
+          height: "90vh",
+          backgroundSize: "cover",
+          backgroundPosition: "center center",
+          margin: "-80px -12px 0",
+        }}
+      >
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+          <h1 class="display-1 fw-bold text-body-emphasis ">MerchMora</h1>
+        </div>
+      </main>
 
       <div class="container my-5">
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
           <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
             <h1 class="display-4 fw-bold lh-1 text-body-emphasis">
+
               Welcome to MerchMora <br></br> E-commerce Store!
             </h1>
             <p class="lead">
               Shop the latest Mora trends and discover amazing deals.
             </p>
+
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
               <a
                 className="btn btn-outline-secondary btn-lg px-4"

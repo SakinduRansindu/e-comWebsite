@@ -1,4 +1,6 @@
 import React,{ useContext ,useState ,useEffect } from 'react';
+import { validateLogin,Serverlogout } from '../../API/API';
+import { useNavigate } from 'react-router-dom';
 
 
 const AuthContext = React.createContext();
@@ -6,21 +8,22 @@ export const AuthData = ()=> useContext(AuthContext);
 
 
 export default function AuthWrapper({children}) {
-
+    // const navigate = useNavigate();
+    
     const checkLocalLoginData=()=>{
         const storedUser = localStorage.getItem('user');
         if(storedUser!=null){
             try{
                 const data = JSON.parse(storedUser);
-                if(data.username && data.role && data.jwt){
-                    return {username:data.username,role:data.role,jwt:data.jwt,avatar:data.avatar,isLogedIn:true};
+                if(data.name && data.role){
+                    return {name:data.name,role:data.role,avatar:data.avatar,loginMsg:'',isLogedIn:true};
                 }
             }
             catch(e){
                 console.error(e);
             }
         }
-        return {username:'',role:'',jwt:'',avatar:'',isLogedIn:false};
+        return {username:'',role:'',avatar:'',loginMsg:'',isLogedIn:false};
     }
 
     const [user,setUser] = useState(checkLocalLoginData());
@@ -31,37 +34,57 @@ export default function AuthWrapper({children}) {
     
     },[user]);
 
-    const userLogin = (username,password)=>{
+    const userLogin = (email,password)=>{
+
     return new Promise((resolve,reject)=>{
-            // make a api call to get the jwt and user data
-            if(username==='customer' && password==='customer'){
-                setUser({username:username,role:'customer',jwt:'customer',avatar:'',isLogedIn:true});
+            validateLogin(email,password).then((res)=>{
+                console.log(res.data);
+                setUser({name:res.data.user.FirstName,role:res.data.user.Type,avatar:res.data.user.ProfilePicture,loginMsg:'',isLogedIn:true});
                 resolve('Login successful');
             }
-            else if(username==='seller' && password==='seller'){
-                setUser({username:username,role:'seller',jwt:'seller',avatar:'',isLogedIn:true});
-                resolve('Login successful');
-            }
-            else{
-                reject('Invalid username or password');
-            }
+            ).catch((err)=>{
+                console.error(err.message);
+                reject(err.message);
+            });
         });
     }
 
     const userLogout =async ()=>{
         return new Promise((resolve,reject)=>{
-            setUser({username:'',role:'',jwt:'',avatar:'',isLogedIn:false});
-            // make a api call to clear the jwt in server
-            resolve('Logout successful');
-            reject('Logout failed');
+
+            Serverlogout().then((res)=>{
+                console.log(res.data);
+                resolve('Logout successful');
+            }).catch((err)=>{
+                CheckSessionErrors(err);
+                console.error(err.message);
+                reject(err.message);
+            }).finally(()=>{
+                setUser({name:'',role:'',avatar:'',loginMsg:'',isLogedIn:false});
+            });
         });
+    }
+
+    const CheckSessionErrors = (err)=>{
+        console.log(err);
+        if(err.response.status===401){
+            sessionExpired();
+        }
+    }
+
+    const clearMsgs = ()=>{
+        setUser({name:user.name,role:user.role,avatar:user.avatar,loginMsg:'',isLogedIn:user.isLogedIn});
+    }
+
+    const sessionExpired = ()=>{
+        setUser({name:'',role:'',avatar:'',loginMsg:'Session Expired',isLogedIn:false});
     }
 
     
 
 
   return (
-    <AuthContext.Provider value={{user,userLogin,userLogout}}>
+    <AuthContext.Provider value={{user,userLogin,userLogout,CheckSessionErrors,clearMsgs}}>
             {children}
     </AuthContext.Provider>
   )
