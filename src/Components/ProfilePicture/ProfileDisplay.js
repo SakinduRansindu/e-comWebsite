@@ -11,9 +11,7 @@ export default function ProfileDisplay({
   if (user.isLogedIn) {
     return (
       <div
-        className={
-          "d-flex align-items-center ms-auto mx-2 dark2 rounded " + overwriteClassName
-        }
+        className={"align-self-end ms-auto mx-2 rounded " + overwriteClassName}
       >
         <img
           src={profilePicUrl || ProfilePictureDefault}
