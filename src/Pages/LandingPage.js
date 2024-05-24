@@ -2,6 +2,7 @@ import React from "react";
 import Template from "./Template/Template";
 import HeaderImage from "../Images/ecommerce.png";
 import Image from "../Images/image1.png";
+import Image2 from "../Images/image2.png";
 
 export default function LandingPage() {
   return (
@@ -43,18 +44,28 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <div class="container col-xxl-8 px-4 py-5">
-        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">
+      <div class="container my-5">
+        <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+          <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis">
+
               Welcome to MerchMora <br></br> E-commerce Store!
             </h1>
-            <p class="col-md-8 fs-4">
+            <p class="lead">
               Shop the latest Mora trends and discover amazing deals.
             </p>
-            <a className="btn btn-primary btn-lg" href="/browse">
-              Shop Now
-            </a>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+              <a
+                className="btn btn-outline-secondary btn-lg px-4"
+                href="/browse"
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img class="rounded-lg-3" src={Image2} alt="" width="720" />
           </div>
         </div>
       </div>
