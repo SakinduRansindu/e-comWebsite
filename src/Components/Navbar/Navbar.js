@@ -19,7 +19,7 @@ export default function Navbar({ ...props }) {
     <>
       <div class="container fixed-top my-3 ">
         <nav
-          className="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow rounded"
+          className="navbar navbar-expand-lg  sticky-top shadow rounded"
           aria-label="Eleventh navbar example"
         >
           <div className="container-fluid">
@@ -62,7 +62,7 @@ export default function Navbar({ ...props }) {
                   return null;
                 })}
               </ul>
-              <div className="d-lg-flex col-lg-3 justify-content-lg-end">
+              <div className="d-lg-flex col-lg-3 justify-content-lg-end ">
                 <ProfileDisplay
                   overwriteClassName="d-none d-lg-inline"
                   profilePicUrl=""
@@ -71,14 +71,14 @@ export default function Navbar({ ...props }) {
                 {user.isLogedIn ? (
                   <button
                     onClick={() => navigate("/logout")}
-                    className="btn btn-primary"
+                    className="btn btn-outline-light"
                   >
                     Logout
                   </button>
                 ) : (
                   <button
                     onClick={() => navigate("/login")}
-                    className="btn btn-primary"
+                    className="btn btn-outline-light"
                   >
                     Login
                   </button>
