@@ -15,12 +15,12 @@ export default function RegisterPage() {
       <Template renderSlideBar={false}>
         <div class="container py-4">
           <header class="pb-3 mb-4 border-bottom">
-            <span class="fs-4">Register</span>
+            <span class="mb-4 display-5">Register</span>
           </header>
 
-          <div class="row align-items-md-stretch">
+          <div class="row align-items-md-stretch row-gap-3 py-3">
             <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark border rounded-3">
+              <div class="h-100 p-5 border rounded-3">
                 <h2>For Customers</h2>
                 <p>browse items</p>
                 <button
@@ -33,11 +33,11 @@ export default function RegisterPage() {
               </div>
             </div>
             <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark border rounded-3">
+              <div class="h-100 p-5 border rounded-3">
                 <h2>For Sellers</h2>
                 <p>Sell items</p>
                 <button
-                  class="btn btn-outline-light"
+                  class="btn btn-outline-light "
                   type="button"
                   onClick={() => setIsSeller(true)}
                 >
