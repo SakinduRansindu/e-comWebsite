@@ -1,84 +1,61 @@
-import React, { useEffect, useState } from 'react';
-import Carousel from '../Carousel/Carousel';
-import { GetProductDetails } from '../../API/ProductsApi';
-import Alert from '../Alert/Alert';
 
+import React, { useState } from 'react';
 
-const ProductDetails = ({ pid, minimalData = false }) => {
+const product = {
+  id: 1,
+  name: "Awesome Product",
+  description: "This is an awesome product that you will love!",
+  price: 99.99,
+  imageUrl: "https://via.placeholder.com/300"
+};
 
-  
-  const [product, setProduct] = useState({});
-  const [state, setstate] = useState('loading');
-  const [imgs, setImgs] = useState([]);
+function Product() {
 
+  const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    if(!minimalData && product?.ProductImgs){
-    let tmp = [];
-    console.log(product);
-    for (let i = 0; i < product.ProductImgs.length; i++) {
-      tmp.push("/uploads/" + product.ProductImgs[i].imgUrl);
-    }
-    setImgs([...tmp]);
-    setstate('loaded');
-  }
-  else if(minimalData && product?.DisplayName){
-    console.log(product);
-    setstate('loaded');
-  }
-  }, [product]);
-
-  useEffect(() => {
-      GetProductDetails(pid).then((res)=>{
-          setProduct(res.data.product);
-          console.log(res.data);
-      }).catch((err)=>{
-          console.error(err);
-          setstate('error');
-      });
-  }, []);
-
-
-  if (!minimalData && state === 'loaded') {
-    return (
-      <div className="product-details">
-        <div className="product-image">
-          <Carousel Imgs={imgs} style={{ maxHeight: '80vw' }} Cid=""></Carousel>
-          {/* <img src={product.image} alt={product.name} /> */}
-        </div>
-        <div className="product-info">
-          <h2>{product.DisplayName}</h2>
-          <p>Price: <strike>Rs.{product.UnitPrice}</strike> Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
-          <p>Category: ${product.Category}</p>
-          {
-            product.AvailableUnits > 0 ? <p>Available Units: {product.AvailableUnits}</p> :
-              <p>Out of Stock</p>
-          }
-          <div className="specifications">
-            <h3>Description:</h3>
-            <p>{product.Description}</p>
-            <a href={`/payments/${pid}`} disabled={product.AvailableUnits>0} className="btn btn-success">Add to Cart</a>
-          </div>
-        </div>
-      </div>
-    );
-  }
-  else if(minimalData && state === 'loaded'){
-    return (
-      <div className="card w-50 mx-auto bg-success">
-        <div className="container m-1">
-          <h4>{product.DisplayName}</h4>
-          <p>Discount: {product.Discount}%</p>
-          <p>Price: Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
-        </div>
-      </div>
-    );
-  }
-  else if (state === 'loading') {
-    return (
-      <Alert title={"Loading"} message={"Please wait while we load the product details"} type={"alert-info"}></Alert>
-    );
-  }
+  function addToCart(){
+    setCart([...cart, product]);
+    alert(`${product.name} has been added to your cart!`);
   };
 
-  export default ProductDetails;
+  return (
+    <div style={styles.container}>
+      <img src={product.imageUrl} alt={product.name} style={styles.image} />
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+      <h2>${product.price}</h2>
+      <button style={styles.button}>Add to cart</button>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    maxWidth: '500px',
+    margin: '0 auto',
+    padding: '20px',
+    textAlign: 'center',
+    border: '1px solid #ddd',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+  },
+  image: {
+    width: '100%',
+    height: 'auto',
+    borderRadius: '8px'
+  },
+  button: {
+    marginTop: '20px',
+    padding: '10px 20px',
+    fontSize: '16px',
+    color: '#fff',
+    backgroundColor: '#007bff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer'
+  }
+};
+
+
+
+export default Product;
