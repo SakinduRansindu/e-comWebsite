@@ -22,10 +22,11 @@
   .product-name {
     font-size: 2em;
     margin-bottom: 10px;
+    color: #fff;
   }
   
   .product-price {
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: #ff0000;
     margin-bottom: 10px;
   }
