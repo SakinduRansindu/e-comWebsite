@@ -1,61 +1,74 @@
+import React, { useEffect, useState } from 'react';
+import Carousel from '../Carousel/Carousel';
+import { GetProductDetails } from '../../API/ProductsApi';
+import Alert from '../Alert/Alert';
+import './productDetails.css'; // Import the CSS file
 
-import React, { useState } from 'react';
+const ProductDetails = ({ pid, minimalData = false }) => {
+  const [product, setProduct] = useState({});
+  const [state, setState] = useState('loading');
+  const [imgs, setImgs] = useState([]);
 
-const product = {
-  id: 1,
-  name: "Awesome Product",
-  description: "This is an awesome product that you will love!",
-  price: 99.99,
-  imageUrl: "https://via.placeholder.com/300"
-};
+  useEffect(() => {
+    GetProductDetails(pid)
+      .then((res) => {
+        setProduct(res.data.product);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setState('error');
+      });
+  }, [pid]);
 
-function Product() {
+  useEffect(() => {
+    if (!minimalData && product?.ProductImgs) {
+      const tmpImgs = product.ProductImgs.map((img) => "/uploads/" + img.imgUrl);
+      setImgs(tmpImgs);
+      setState('loaded');
+    } else if (minimalData && product?.DisplayName) {
+      setState('loaded');
+    }
+  }, [product, minimalData]);
 
-  const [cart, setCart] = useState([]);
-
-  function addToCart(){
-    setCart([...cart, product]);
-    alert(`${product.name} has been added to your cart!`);
-  };
-
-  return (
-    <div style={styles.container}>
-      <img src={product.imageUrl} alt={product.name} style={styles.image} />
-      <h1>{product.name}</h1>
-      <p>{product.description}</p>
-      <h2>${product.price}</h2>
-      <button style={styles.button}>Add to cart</button>
-    </div>
-  );
-};
-
-const styles = {
-  container: {
-    maxWidth: '600px',
-    margin: '0 auto',
-    padding: '20px',
-    textAlign: 'center',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-  },
-  image: {
-    width: '100%',
-    height: 'auto',
-    borderRadius: '8px'
-  },
-  button: {
-    marginTop: '20px',
-    padding: '10px 20px',
-    fontSize: '16px',
-    color: '#fff',
-    backgroundColor: '#007bff',
-    border: 'none',
-    borderRadius: '5px',
-    cursor: 'pointer'
+  if (!minimalData && state === 'loaded') {
+    return (
+      <div className="product-details">
+        <div className="product-image">
+          <Carousel Imgs={imgs} style={{ maxHeight: '80vw' }} Cid=""></Carousel>
+        </div>
+        <div className="product-info">
+          <h2 className="product-name">{product.DisplayName}</h2>
+          <p className="product-price">Price: <strike>Rs.{product.UnitPrice}</strike> Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
+          <p className="product-category">Category: {product.Category}</p>
+          {product.AvailableUnits > 0 ? <p className="product-units">Available Units: {product.AvailableUnits}</p> : <p className="product-out-of-stock">Out of Stock</p>}
+          <div className="specifications">
+            <h3 className="product-description-title">Description:</h3>
+            <p className="product-description">{product.Description}</p>
+            <button onClick={() => alert(`${product.DisplayName} has been added to your cart!`)} disabled={product.AvailableUnits === 0} className="btn btn-success add-to-cart">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  } else if (minimalData && state === 'loaded') {
+    return (
+      <div className="card w-50 mx-auto bg-success">
+        <div className="container m-1">
+          <h4>{product.DisplayName}</h4>
+          <p>Discount: {product.Discount}%</p>
+          <p>Price: Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
+        </div>
+      </div>
+    );
+  } else if (state === 'loading') {
+    return <Alert title={"Loading"} message={"Please wait while we load the product details"} type={"alert-info"} />;
+  } else if (state === 'error') {
+    return <Alert title={"Error"} message={"There was an error loading the product details"} type={"alert-danger"} />;
   }
+
+  return null;
 };
 
-
-
-export default Product;
+export default ProductDetails;
