@@ -1,0 +1,5 @@
+#glass,#search-slider{
+    background: rgba(10, 29, 54, 0.7);
+    backdrop-filter: blur(17.3px);
+    -webkit-backdrop-filter: blur(17.3px);
+}
