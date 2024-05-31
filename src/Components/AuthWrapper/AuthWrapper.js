@@ -67,7 +67,10 @@ export default function AuthWrapper({children}) {
 
     const CheckSessionErrors = (err)=>{
         console.log(err);
-        if(err.response.status===401){
+        if(!err){
+            sessionExpired();
+        }
+        else if(err.response.status===401){
             sessionExpired();
         }
     }
