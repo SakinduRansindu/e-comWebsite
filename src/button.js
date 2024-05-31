@@ -1,15 +1,17 @@
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import React from "react";
 
 const Button = ({ label, onClick, disabled, variant = "primary" }) => {
   // Define button styles based on variant
   const buttonStyles = {
     primary: {
-      backgroundColor: "#121f31",
-      color: "white",
+      backgroundColor: "#548AFF",
+      color: "black",
       padding: "10px 20px",
       borderRadius: "5px",
-      border: "1px solid #0a58ca",
+      border: "0px",
       cursor: "pointer",
+      width: "auto",
     },
   };
 
