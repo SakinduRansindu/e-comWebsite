@@ -60,10 +60,10 @@ export default function ProductItem({ ...props }) {
                 <del>LKR {props.priceBeforeDiscount}</del>
               )}
             </span>
-          </div>
           {props.isDiscountApplied && (<small className="badge text-wrap text-bg-success">
-          {props.remainingDays} to claim {props.discount}% discount 
+          {props.discount}% off<br/>{props.remainingDays} left
           </small>)}
+          </div>
         </div>
 
           <div className="card-body d-flex align-items-center justify-content-around">  
