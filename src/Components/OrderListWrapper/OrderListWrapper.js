@@ -44,7 +44,7 @@ export default function OrderListWrapper({data}) {
     return (
       <div className="list-group">
         {data.map((order)=>{
-          return <CustomerOrderListItem name={order.productName} state={order.state} date={order.date}/>
+          return <CustomerOrderListItem name={order.Product.DisplayName} price={order.TotalPrice} units={order.Units} state={order.state} date={order.PurchaseDateTime}/>
         })}
       </div>
     )
