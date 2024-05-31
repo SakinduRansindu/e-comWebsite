@@ -25,6 +25,8 @@ export default class ProductContainer extends Component {
                 availableUnits={product.availableUnits}
                 priceBeforeDiscount={product.priceBeforeDiscount}
                 seller={product.seller}
+                discount = {product.Discount}
+                remainingDays = {product.remainingDays}
               ></ProductItem>
             ))}
           </div>

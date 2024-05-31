@@ -2,7 +2,40 @@ import React from "react";
 import Carousel from "../Carousel/Carousel";
 import Button from "../../button.js";
 
+
 export default function ProductItem({ ...props }) {
+
+  const UnitsLeftBadge = () => {
+    return (props.availableUnits !== undefined && (
+      <p className="card-text text-body-secondary mx-1">
+        {props.availableUnits === 0 ? (
+          <small className="badge text-wrap text-bg-danger">
+            Out of Stock
+          </small>
+        ) : (
+          <small
+            class="badge text-wrap text-black"
+            style={{ backgroundColor: "#548AFF" }}
+          >
+            {props.availableUnits < 5
+              ? `Only ${props.availableUnits} Units Left`
+              : `${props.availableUnits} Units Left`}
+          </small>
+        )}
+      </p>
+    ));
+  }
+
+  const BuyNowBTN = () => {
+    return (<a href={props.productUrl}>
+      {props.availableUnits && props.availableUnits > 0 ? (
+        <Button label="Buy Now" className="btn btn-success my-0 mx-1" />
+      ) : (
+        <Button label="View" className="btn btn-primary my-0 mx-1" />
+      )}
+    </a>);
+  }
+
   return (
     <div className="col">
       <div
@@ -28,36 +61,14 @@ export default function ProductItem({ ...props }) {
               )}
             </span>
           </div>
-
-          {props.availableUnits !== undefined && (
-            <p className="card-text text-body-secondary">
-              {props.availableUnits === 0 ? (
-                <small className="badge text-wrap text-bg-danger">
-                  Out of Stock
-                </small>
-              ) : (
-                <small
-                  class="badge text-wrap text-black"
-                  style={{ backgroundColor: "#548AFF" }}
-                >
-                  {props.availableUnits < 5
-                    ? `Only ${props.availableUnits} Units Left`
-                    : `${props.availableUnits} Units Left`}
-                </small>
-              )}
-            </p>
-          )}
+          {props.isDiscountApplied && (<small className="badge text-wrap text-bg-success">
+          {props.remainingDays} to claim {props.discount}% discount 
+          </small>)}
         </div>
-        <div className="card-body d-flex align-items-end">
-          <div className="py-0 flex-column">
-            <a href={props.productUrl}>
-              {props.availableUnits && props.availableUnits > 0 ? (
-                <Button label="Buy Now" className="btn btn-primary m-0" />
-              ) : (
-                <Button label="View" className="btn btn-primary m-0" />
-              )}
-            </a>
-          </div>
+
+          <div className="card-body d-flex align-items-center justify-content-around">  
+            <UnitsLeftBadge/>
+            <BuyNowBTN />
         </div>
         <div className="card-footer">
           <p className="card-text mb-1">

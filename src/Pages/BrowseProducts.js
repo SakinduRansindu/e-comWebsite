@@ -54,7 +54,7 @@ export default function BrowseProducts() {
         else{
           imgs.push(defaultImg);
         }
-        const { price, isDiscountApplied } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
+        const { price, isDiscountApplied ,remainingDays } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
         tmp.push({
           title:element.DisplayName,
           description:element.Description,
@@ -66,7 +66,9 @@ export default function BrowseProducts() {
           priceBeforeDiscount: element.UnitPrice, 
           availableUnits: element.AvailableUnits, 
           category: element.Category, 
-          productId: element.ProductId
+          productId: element.ProductId,
+          Discount: element.Discount,
+          remainingDays:remainingDays
         });
       });
       // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
