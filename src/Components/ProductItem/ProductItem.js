@@ -51,7 +51,7 @@ export default function ProductItem({ ...props }) {
           onClick={null}
         ></Carousel>
 
-        <div className="card-body d-flex flex-column">
+        <div className="card-body d-flex flex-column pe-0">
           <div className="d-flex justify-content-between pt-1">
             <div>
               <h6 className="card-title mb-0">{props.title}</h6>
@@ -61,24 +61,27 @@ export default function ProductItem({ ...props }) {
                 </small>
               </p>
             </div>
-            <p className="card-text text-body-secondary position-absolute end-0">
-              {props.isDiscountApplied && (
-                <small
-                  class="badge text-wrap rounded-end-0"
-                  style={{
-                    backgroundColor: "#2C384D",
-                    color: "#A1BFF4",
-                    fontSize: "14px",
-                  }}
-                >
-                  {props.discount}% off
-                  <br />
-                  {props.remainingDays} left
-                </small>
-              )}
-            </p>
+            <div className="me-0">
+              <p className="card-text text-body-secondary ps-1">
+                {props.isDiscountApplied && (
+                  <small
+                    class=" badge text-wrap rounded-end-0"
+                    style={{
+                      backgroundColor: "#2C384D",
+                      color: "#A1BFF4",
+                      fontSize: "14px",
+                      width: "100px",
+                    }}
+                  >
+                    {props.discount}% off
+                    <br />
+                    {props.remainingDays} left
+                  </small>
+                )}
+              </p>
+            </div>
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center mt-auto">
             <p className="card-text my-0 text-white fs-4 mr-2">
               LKR {props.price}
             </p>
