@@ -1,21 +1,17 @@
 import React from "react";
 import Carousel from "../Carousel/Carousel";
 import Button from "../../button.js";
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
 export default function ProductItem({ ...props }) {
   const UnitsLeftBadge = () => {
     return (
       props.availableUnits !== undefined && (
-        <p className="card-text text-body-secondary mx-1">
+        <p className="card-text text-body-secondary py-2">
           {props.availableUnits === 0 ? (
-            <small className="badge text-wrap text-bg-danger">
-              Out of Stock
-            </small>
+            <small className="badge text-wrap text-danger">Out of Stock</small>
           ) : (
-            <small
-              class="badge text-wrap "
-              style={{ backgroundColor: "#2C384D", color: "#548AFF" }}
-            >
+            <small class="badge text-wrap text-muted">
               {props.availableUnits < 5
                 ? `Only ${props.availableUnits} Units Left`
                 : `${props.availableUnits} Units Left`}
@@ -28,9 +24,12 @@ export default function ProductItem({ ...props }) {
 
   const BuyNowBTN = () => {
     return (
-      <a href={props.productUrl}>
+      <a href={props.productUrl} className="align-self-center">
         {props.availableUnits && props.availableUnits > 0 ? (
-          <Button label="Buy Now" className="btn btn-success my-0 mx-1 " />
+          <Button
+            label="Buy Now"
+            className="btn btn-success my-0 mx-1 align-self-center"
+          />
         ) : (
           <Button label="View" className="btn btn-primary my-0 mx-1" />
         )}
@@ -51,53 +50,50 @@ export default function ProductItem({ ...props }) {
           style={null}
           onClick={null}
         ></Carousel>
+
         <div className="card-body d-flex flex-column">
-          <h5 className="card-title">{props.title}</h5>
+          <div className="d-flex justify-content-between pt-1">
+            <div>
+              <h6 className="card-title mb-0">{props.title}</h6>
+              <p className="card-text mb-2">
+                <small class="text-bold text-body-secondary">
+                  by {props.seller}
+                </small>
+              </p>
+            </div>
+            <p className="card-text text-body-secondary position-absolute end-0">
+              {props.isDiscountApplied && (
+                <small
+                  class="badge text-wrap rounded-end-0"
+                  style={{
+                    backgroundColor: "#2C384D",
+                    color: "#A1BFF4",
+                    fontSize: "14px",
+                  }}
+                >
+                  {props.discount}% off
+                  <br />
+                  {props.remainingDays} left
+                </small>
+              )}
+            </p>
+          </div>
           <div className="d-flex align-items-center">
-            <p className="card-text mb-0  text-white fs-4 mr-2">
+            <p className="card-text my-0 text-white fs-4 mr-2">
               LKR {props.price}
             </p>
-            <span className="text-bold text-body-secondary display-inline m-2">
+            <span className="text-bold text-body-secondary display-inline mx-2">
               {props.isDiscountApplied && (
                 <del>LKR {props.priceBeforeDiscount}</del>
               )}
             </span>
           </div>
-          <div className="d-flex align-items-center">
-            <p className="card-text text-body-secondary">
-              <UnitsLeftBadge />
-            </p>
-          </div>
         </div>
-
-        <div
-          className="card-body d-flex align-items-end justify-content-between"
-          style={{
-            paddingRight: "0",
-          }}
-        >
+        <div className="d-flex justify-content-between pt-0 p-3">
           <BuyNowBTN />
-          <p className="card-text text-body-secondary ">
-            {props.isDiscountApplied && (
-              <small
-                class="badge text-wrap rounded-end-0"
-                style={{
-                  backgroundColor: "#2C384D",
-                  color: "#548AFF",
-                }}
-              >
-                {props.discount}% off
-                <br />
-                {props.remainingDays} left
-              </small>
-            )}
-          </p>
-        </div>
-        <div className="card-footer">
-          <p className="card-text mb-1">
-            <small class="text-bold text-body-secondary">
-              by {props.seller}
-            </small>
+
+          <p className="card-text text-body-secondary align-self-center">
+            <UnitsLeftBadge />
           </p>
         </div>
       </div>
