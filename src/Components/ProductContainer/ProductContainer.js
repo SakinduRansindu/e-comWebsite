@@ -13,7 +13,7 @@ export default class ProductContainer extends Component {
         )}
         <div className="container-fluid mt-5">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
-            {this.props.products.map((product, index) => (
+            {this.props.products.toReversed().map((product, index) => (
               <ProductItem
                 key={index}
                 id={index}
@@ -25,6 +25,8 @@ export default class ProductContainer extends Component {
                 availableUnits={product.availableUnits}
                 priceBeforeDiscount={product.priceBeforeDiscount}
                 seller={product.seller}
+                discount = {product.Discount}
+                remainingDays = {product.remainingDays}
               ></ProductItem>
             ))}
           </div>

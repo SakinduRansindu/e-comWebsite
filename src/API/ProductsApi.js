@@ -103,11 +103,20 @@ export const calculateDiscount=(unitprice,discountPersentage,DiscountEndDate)=>{
     const now = moment();
     if(discountEnd.isValid() && now.isBefore(discountEnd) && discountPersentage>0 && discountPersentage<=100){
         console.log("discount valied");
-        return {price:(unitprice * (100-discountPersentage) / 100),isDiscountApplied:true};
+        let discountRemains = discountEnd.diff(now,'days');
+        let timeUnit = " days";
+        if(discountRemains===0){
+            discountRemains = discountEnd.diff(now,'hours');
+            timeUnit = " hours";
+            if(discountRemains===0){
+                return {price:unitprice,isDiscountApplied:false,remainingDays:"0 days"};
+            }
+        }
+        return {price:(unitprice * (100-discountPersentage) / 100),isDiscountApplied:true ,remainingDays:discountRemains+timeUnit};
     }
     else{
         console.log("discount not valied");
-        return {price:unitprice,isDiscountApplied:false};
+        return {price:unitprice,isDiscountApplied:false,remainingDays:0};
     }
     
     
