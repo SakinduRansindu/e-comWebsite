@@ -36,7 +36,7 @@ export default function LandingPage() {
         class="px-3"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
-          height: "90vh",
+          height: "91vh",
           backgroundSize: "cover",
           backgroundPosition: "center center",
           margin: "-80px -12px 0",
@@ -101,6 +101,61 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      <section
+        class="py-4 py-md-5 py-xl-10 bg-white"
+        style={{
+          margin: "0px -12px 0",
+        }}
+      >
+        <div class="container py-5">
+          <div class="row justify-content-md-center">
+            <div class="col-12 col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+              <h2 class="display-4 mb-4 mb-md-5 mb-xxl-6 text-center text-dark">
+                Subscribe to our newsletter and never miss a thing.
+              </h2>
+            </div>
+          </div>
+          <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+              <form class="row gy-3 gy-lg-0 gx-lg-2 justify-content-center">
+                <div class="col-12 col-lg-8">
+                  <label
+                    for="email-newsletter-component"
+                    class="visually-hidden"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control form-control-lg"
+                    id="email-newsletter-component"
+                    value=""
+                    placeholder="Email Address"
+                    aria-label="email-newsletter-component"
+                    aria-describedby="email-newsletter-help"
+                    required
+                  />
+                  <div
+                    id="email-newsletter-help"
+                    class="form-text text-center text-lg-start text-dark"
+                  >
+                    We'll never share your email with anyone else.
+                  </div>
+                </div>
+                <div class="col-12 col-lg-3 text-center text-lg-start">
+                  <button
+                    type="submit"
+                    class="btn btn-outline-dark bsb-btn-3xl btn-lg"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </Template>
   );
 }
