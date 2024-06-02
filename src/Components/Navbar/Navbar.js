@@ -2,6 +2,7 @@ import React from "react";
 import { AuthData } from "../AuthWrapper/AuthWrapper";
 import { useNavigate } from "react-router-dom";
 import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
+import logo1 from "../../Images/logo1.png";
 import "./Navbar.css";
 
 export default function Navbar({ ...props }) {
@@ -23,8 +24,17 @@ export default function Navbar({ ...props }) {
           aria-label="Eleventh navbar example"
         >
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              MerchMora
+            <a className="navbar-brand p-0" href="/">
+              <img
+                src={logo1}
+                height="40"
+                style={{
+                  objectFit: "cover",
+                  margin: 0,
+                  padding: 0,
+                  border: "none",
+                }}
+              />
             </a>
 
             <ProfileDisplay

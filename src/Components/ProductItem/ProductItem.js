@@ -1,7 +1,9 @@
 import React from "react";
 import Carousel from "../Carousel/Carousel";
-import Button from "../../button.js";
+// import Button from "../../button.js";
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import Button from "../Buttons/button.js";
+
 
 export default function ProductItem({ ...props }) {
   const UnitsLeftBadge = () => {

@@ -1,0 +1,23 @@
+.glwbtn {
+  padding: 10px 20px;
+  border: none;
+  font-size: 20px;
+  color: #202020;
+  border-radius: 7px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  transition: 0.5s;
+  transition-property: box-shadow;
+}
+
+.glwbtn {
+  background: #A1BFF4;
+  box-shadow: 0 0 25px #A1BFF4;
+}
+
+.glwbtn:hover {
+  box-shadow: 0 0 5px #A1BFF4,
+              0 0 25px #A1BFF4,
+              0 0 50px #A1BFF4,
+              0 0 100px #A1BFF4;
+}

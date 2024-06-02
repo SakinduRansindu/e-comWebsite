@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { SetSellerOrderStatus } from '../../API/ProductsApi';
-import Button from '../../button.js';
+import React, { useState } from "react";
+import { SetSellerOrderStatus } from "../../API/ProductsApi";
+import Button from "../Buttons/button.js";
 
 const OrderStateEditor = ({ initialState, orderId }) => {
   const [orderState, setOrderState] = useState(initialState);
   const [showSelect, setShowSelect] = useState(false);
 
   const handleSetStateClick = () => {
-    setShowSelect(true); 
+    setShowSelect(true);
   };
 
   const handleStateChange = (event) => {
@@ -27,8 +27,10 @@ const OrderStateEditor = ({ initialState, orderId }) => {
   };
   return (
     <div>
-      {!showSelect ? ( 
-        <button className='btn btn-primary'  onClick={handleSetStateClick}>Set State</button>
+      {!showSelect ? (
+        <button className="btn btn-primary" onClick={handleSetStateClick}>
+          Set State
+        </button>
       ) : (
         <div>
           <select value={orderState} onChange={handleStateChange}>
@@ -36,7 +38,13 @@ const OrderStateEditor = ({ initialState, orderId }) => {
             <option value="delivered">Delivered</option>
             <option value="cancelled">Cancelled</option>
           </select>
-          <button className='btn btn-primary' label="Save" onClick={handleUpdateState}>Save</button>
+          <button
+            className="btn btn-primary"
+            label="Save"
+            onClick={handleUpdateState}
+          >
+            Save
+          </button>
         </div>
       )}
     </div>

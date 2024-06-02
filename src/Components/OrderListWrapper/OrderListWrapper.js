@@ -6,7 +6,7 @@ import { AuthData } from '../AuthWrapper/AuthWrapper'
 
 
 export default function OrderListWrapper({data}) {
-  const {user} = AuthData();
+  const {user , CheckSessionErrors} = AuthData();
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -44,7 +44,7 @@ export default function OrderListWrapper({data}) {
     return (
       <div className="list-group">
         {data.map((order)=>{
-          return <CustomerOrderListItem name={order.productName} state={order.state} date={order.date}/>
+          return <CustomerOrderListItem name={order.Product.DisplayName} price={order.TotalPrice} units={order.Units} state={order.state} date={order.PurchaseDateTime}/>
         })}
       </div>
     )
@@ -57,6 +57,9 @@ export default function OrderListWrapper({data}) {
     )
   }
   else{
+    if(!user.role){
+    CheckSessionErrors(false);
+    }
     return (
       <div className='my-5'>
         <Alert title={"Error:"} message={'user role not found :('}></Alert>
