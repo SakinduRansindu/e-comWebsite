@@ -20,7 +20,7 @@ export default function Navbar({ ...props }) {
     <>
       <div class="container fixed-top my-3 ">
         <nav
-          className="navbar navbar-expand-lg  sticky-top shadow rounded"
+          className="navbar navbar-expand-lg  sticky-top rounded-3"
           aria-label="Eleventh navbar example"
         >
           <div className="container-fluid">

@@ -36,7 +36,7 @@ export default function LandingPage() {
         class="px-3"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
-          height: "90vh",
+          height: "91vh",
           backgroundSize: "cover",
           backgroundPosition: "center center",
           margin: "-80px -12px 0",
