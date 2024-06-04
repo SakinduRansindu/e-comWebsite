@@ -4,8 +4,7 @@
   font-size: 20px;
   color: #202020;
   border-radius: 7px;
-  letter-spacing: 2px;
-  font-weight: 700;
+  font-weight: 500;
   transition: 0.5s;
   transition-property: box-shadow;
 }

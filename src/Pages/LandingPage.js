@@ -4,6 +4,14 @@ import HeaderImage from "../Images/ecommerce.png";
 import Image from "../Images/image1.png";
 import Image2 from "../Images/image2.png";
 import logo2 from "../Images/logo2.png";
+import logo1 from "../Images/logo1.png";
+import top from "../Images/top.jpg";
+import bottom from "../Images/bottom.jpg";
+import cap from "../Images/cap.jpg";
+import badge from "../Images/badge.jpg";
+import keytag from "../Images/keytag.jpg";
+import band from "../Images/band.jpg";
+import all from "../Images/all.jpg";
 import GlowButton from "../Components/Buttons/glowButton.js";
 import Button from "../Components/Buttons/button.js";
 
@@ -31,7 +39,6 @@ export default function LandingPage() {
           MerchMora
         </h1>
         </div>*/}
-
       <main
         class="px-3"
         style={{
@@ -46,7 +53,6 @@ export default function LandingPage() {
           <img src={logo2} width="45%" />
         </div>
       </main>
-
       <div class="container my-5">
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
           <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
@@ -71,10 +77,206 @@ export default function LandingPage() {
             </div>
           </div>
           <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-            <img class="rounded-lg-3" src={Image2} alt="" width="720" />
+            <img class="rounded-lg-3" src={Image2} alt="" width="520" />
           </div>
         </div>
       </div>
+
+      <section
+        class="py-5 py-xl-8 "
+        style={{
+          margin: "0px -12px 0",
+          backgroundColor: "#A1BFF4",
+        }}
+      >
+        <div class="container">
+          <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+              <h2 class="mb-4 display-5 text-center text-dark">
+                Top Categories
+              </h2>
+
+              <hr class="w-50 mx-auto mb-2 mb-xl-3 border-dark" />
+            </div>
+          </div>
+        </div>
+        <div class="container my-5">
+          <div class="row">
+            <div class="col-md-6 mb-4 ">
+              <div
+                class="card border-0"
+                style={{
+                  height: "600px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${top})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Tops
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "600px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${bottom})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Bottoms
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${band})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Wrist Bands
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${cap})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Caps
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${badge})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Badge
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${keytag})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    Key tags
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${cap})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    All
+                  </h1>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div
+                class="card border-0"
+                style={{
+                  height: "400px",
+                }}
+              >
+                <div
+                  class="card-body rounded"
+                  style={{
+                    backgroundImage: `linear-gradient(rgba(0,0,0, .6), rgba(0,0,0, .6)),url(${all})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center center",
+                  }}
+                >
+                  <h1 class="card-title d-flex h-100 justify-content-center align-items-center">
+                    All
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div class="container col-xxl-8 px-4 py-5">
         <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -102,16 +304,21 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <section
-        class="py-4 py-md-5 py-xl-10 bg-white"
-        style={{
-          margin: "0px -12px 0",
-        }}
-      >
-        <div class="container py-5">
+      <section class="py-4 py-md-5 py-xl-10">
+        <div
+          class="container bg-black rounded-5"
+          style={{
+            padding: "150px 20px 150px",
+          }}
+        >
           <div class="row justify-content-md-center">
             <div class="col-12 col-md-9 col-lg-8 col-xl-7 col-xxl-6">
-              <h2 class="display-4 mb-4 mb-md-5 mb-xxl-6 text-center text-dark">
+              <h2
+                class="display-4 mb-4 mb-md-5 mb-xxl-6 text-center text-light"
+                style={{
+                  color: "#12161d",
+                }}
+              >
                 Subscribe to our newsletter and never miss a thing.
               </h2>
             </div>
@@ -128,17 +335,14 @@ export default function LandingPage() {
                   </label>
                   <input
                     type="email"
-                    class="form-control form-control-lg"
+                    class="form-control form-control-lg border-0"
                     id="email-newsletter-component"
-                    value=""
                     placeholder="Email Address"
-                    aria-label="email-newsletter-component"
-                    aria-describedby="email-newsletter-help"
                     required
                   />
                   <div
                     id="email-newsletter-help"
-                    class="form-text text-center text-lg-start text-dark"
+                    class="form-text text-center text-lg-start text-light"
                   >
                     We'll never share your email with anyone else.
                   </div>
@@ -146,7 +350,11 @@ export default function LandingPage() {
                 <div class="col-12 col-lg-3 text-center text-lg-start">
                   <button
                     type="submit"
-                    class="btn btn-outline-dark bsb-btn-3xl btn-lg"
+                    class="btn btn-lg "
+                    style={{
+                      backgroundColor: "#A1BFF4",
+                      color: "black",
+                    }}
                   >
                     Subscribe
                   </button>
