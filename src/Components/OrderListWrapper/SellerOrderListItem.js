@@ -1,24 +1,48 @@
-import React from 'react'
-import OrderStateEditor from '../OrderStateEditor/OrderStateEditor'
+import React from "react";
+import OrderStateEditor from "../OrderStateEditor/OrderStateEditor";
 
-export default function SellerOrderListItem({name, orderId, productId, customerName, phone_No, state, PurchaseDateTime}) {
-  
-  
-  
+export default function SellerOrderListItem({
+  name,
+  orderId,
+  productId,
+  customerName,
+  phone_No,
+  state,
+  PurchaseDateTime,
+}) {
+  const colorchange = (s) => {
+    if (s === "pending") {
+      return "bg-warning-subtle border border-warning text-warning";
+    } else if (s === "delivered") {
+      return "bg-success-subtle border border-success text-success-emphasis";
+    } else if (s === "cancelled") {
+      return "bg-danger-subtle border border-danger text-danger";
+    }
+  };
+
   return (
-    <a href="#" className="list-group-item list-group-item-action flex-column align-items-start my-2 mx-auto dark2">
-    <div className="d-flex w-80 justify-content-between">
-      <div className='d-flex justify-content-between w-75'> 
-      <p className="m-1 px-4 py-2 mr-5">Order ID {orderId}</p>
-        <small className='m-1 p-1 rounded'>{PurchaseDateTime}</small>
-
-        <h5 className="m-1 px-4 py-2 mr-5">{name}</h5>
-        <p className="m-1 px-4 py-2 mr-5">{customerName}</p>
-        <p className="m-1 px-4 py-2 mr-5">{phone_No}</p>
-        <p className="m-1 px-4 py-2 rounded border success">{state}</p>
-        <OrderStateEditor initialState={state} orderId={orderId}   />
-      </div>
-    </div>
-  </a>
-  )
+    <tr className="clickable-row" data-href="">
+      <td>
+        <div class="d-flex align-items-center">
+          <div>
+            <h6 class="m-0">{name}</h6>
+            <span class="text-secondary fs-7">{orderId}</span>
+          </div>
+        </div>
+      </td>
+      <td>
+        <h6 class="mb-1">{customerName}</h6>
+        <span class="text-secondary fs-7">{phone_No}</span>
+      </td>
+      <td>
+        <h6 class="mb-1">{PurchaseDateTime}</h6>
+      </td>
+      <td>
+        <span class={"badge  bsb-w-85 " + colorchange(state)}>{state}</span>
+      </td>
+      <td>
+        <OrderStateEditor initialState={state} orderId={orderId} />
+      </td>
+    </tr>
+  );
 }

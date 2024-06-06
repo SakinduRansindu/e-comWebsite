@@ -28,7 +28,10 @@ const OrderStateEditor = ({ initialState, orderId }) => {
   return (
     <div>
       {!showSelect ? (
-        <button className="btn btn-primary" onClick={handleSetStateClick}>
+        <button
+          className="btn btn-primary-subtle btn-outline-primary text-primary-emphasis"
+          onClick={handleSetStateClick}
+        >
           Set State
         </button>
       ) : (
@@ -39,7 +42,7 @@ const OrderStateEditor = ({ initialState, orderId }) => {
             <option value="cancelled">Cancelled</option>
           </select>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary-subtle btn-outline-primary text-primary-emphasis"
             label="Save"
             onClick={handleUpdateState}
           >
