@@ -83,75 +83,155 @@ export default function AddProductForm() {
   };
 
   return (
-    <form className="container mx-auto my-3 border dark2 rounded p-3">
-      <h1> Add a product</h1>
-      <MultiImageSelect
-        label="Product Images"
-        onChange={(e) => setImages(e.target.files)}
-        isRequired={false}
-        placeholder="Product Name"
-      ></MultiImageSelect>
+    <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+            <div class=" p-4 p-md-5 rounded shadow-sm">
+              <div class="row">
+                <div class="col-12">
+                  <div class="text-center mb-5">
+                    <h2 class="mb-4 display-5 text-center">Add a product</h2>
+                    <hr class="mt-5 mb-4 border-secondary-subtle" />
+                  </div>
+                </div>
+              </div>
+    <form >
+                <div class="row gy-3 gy-md-4 overflow-hidden">
+                  <div class="col-12 text-center">
+                    <label for="Product Images" class="form-label">
+                      Product Image
+                    </label>
+                    
+                        <MultiImageSelect
+                          onChange={(e) => setImages(e.target.files)}
+                          isRequired={false}
+                          placeholder="Product Name"
+                        ></MultiImageSelect>
+                  </div>
 
-      <TextInput
-        type="text"
-        label="Display Name"
-        value={DisplayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-        isRequired="true"
-        placeholder="Product Name"
-      ></TextInput>
+                  <div class="col-12">
+                    <label for="Display Name" class="form-label">
+                    Display Name <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
 
-      <TextInput
-        type="text"
-        label="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        isRequired={false}
-        placeholder="Category"
-      ></TextInput>
+                      <input 
+                        class="form-control"
+                        type="text"
+                        value={DisplayName}
+                        onChange={(e) => setDisplayName(e.target.value)}
+                        required
+                        placeholder="Product Name"
+                      />
+                    </div>
+                  </div>
+     
+                  <div class="col-12">
+                    <label for="Category" class="form-label">
+                    Category <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        type="text"
+                        value={category}
+                        onChange={(e) => setCategory(e.target.value)}
+                        placeholder="Category"
+                      />
+                    </div>
+                  </div>
 
-      <TextAreaInput
-        label="Description"
-        isRequired="true"
-        placeholder="Brief Description of the product..."
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></TextAreaInput>
+                  <div class="col-12">
+                    <label for="Description" class="form-label">
+                    Description <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                     <textarea
+                        class="form-control"
+                        required
+                        placeholder="Brief Description of the product..."
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                      ></textarea>
+                    </div>
+                  </div>
+      
+                  <div class="col-12">
+                    <label for="Unit Price (Rs.)" class="form-label">
+                    Unit Price (Rs.) <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                      <input
+                        class="form-control"
+                        type="number"
+                        required
+                        placeholder="Unit Price"
+                        value={unitPrice}
+                        onChange={(e) => setUnitPrice(e.target.value)}
+                      ></input>
+                    </div>
+                  </div>
+      
+                  <div class="col-12">
+                    <label for="Available Units" class="form-label">
+                    Available Units <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                    <input
+                        class="form-control"
+                        type="number"
+                        required
+                        placeholder="100"
+                        value={availableUnits}
+                        onChange={(e) => setAvailableUnits(e.target.value)}
+                      ></input>
+                    </div>
+                  </div>
+      
+                  <div class="col-12">
+                    <label for="Discount" class="form-label">
+                    Discount
+                    </label>
+                    <div class="input-group">
+                    <input
+                        class="form-control"
+                        type="number"         
+                        placeholder="5%"
+                        value={discount}
+                        onChange={(e) => setDiscount(e.target.value)}
+                      ></input>
+                    </div>
+                  </div>
 
-      <NumberInput
-        label="Unit Price (Rs.)"
-        isRequired="true"
-        placeholder="Unit Price"
-        value={unitPrice}
-        onChange={(e) => setUnitPrice(e.target.value)}
-      ></NumberInput>
+                  <div class="col-12">
+                    <label for="date" class="form-label">
+                    date <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                    <input
+                        class="form-control"
+                        type="date"
+                        value={discountEndDate}
+                        onChange={(e) => setDiscountEndDate(e.target.value)}
+                        placeholder="end date"
+                      ></input>
+                    </div>
+                  </div>
+ 
 
-      <NumberInput
-        label="Available Units"
-        isRequired="true"
-        placeholder="100"
-        value={availableUnits}
-        onChange={(e) => setAvailableUnits(e.target.value)}
-      ></NumberInput>
+      
 
-      <NumberInput
-        label="Discount"
-        isRequired="false"
-        placeholder="5%"
-        value={discount}
-        onChange={(e) => setDiscount(e.target.value)}
-      ></NumberInput>
-
-      <TextInput
-        type="date"
-        label="Discount End Date"
-        value={discountEndDate}
-        onChange={(e) => setDiscountEndDate(e.target.value)}
-        isRequired={false}
-        placeholder="end date"
-      ></TextInput>
-
-      <div className="row">
+     
+      <div class="col-12">
+          <button
+            disabled={display}
+            type="button"
+            onClick={(e) => clear()}
+            className="btn btn-outline-secondary btn-sm"
+          >
+            Clear
+          </button>
+          </div>
         {display ? (
           <Alert
             title={message.isSuccess ? "Success" : "Error"}
@@ -159,22 +239,35 @@ export default function AddProductForm() {
             type={message.color}
           ></Alert>
         ) : null}
-        <div className="col-md-12">
+
+          <div class="col-12">
+          <div class="d-grid">
           <button
-            type="button"
-            onClick={(e) => clear()}
-            className="btn btn-danger"
-          >
-            Clear
-          </button>
-          <button
-            className="btn btn-success float-end"
+            className="btn btn-primary btn-lg"
+            disabled={display}
             onClick={(e) => addProduct(e)}
           >
-            Add
+            Add product
           </button>
-        </div>
+          </div>
+          </div>
+        
       </div>
     </form>
+  </div>
+ </div>
+ </div>
+ </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+

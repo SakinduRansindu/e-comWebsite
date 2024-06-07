@@ -35,6 +35,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
 
   if (!minimalData && state === "loaded") {
     return (
+
       <section class="py-5">
         <div class="container">
           <div class="row gx-5">
@@ -111,6 +112,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                 </div>
               </div>
             </main>
+
           </div>
         </div>
       </section>
