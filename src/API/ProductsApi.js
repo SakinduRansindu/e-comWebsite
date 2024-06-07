@@ -52,7 +52,7 @@ export const CustomerOrdersState = ()=>{
     })
 }
 
-export const ProductGet=()=> {
+export const ProductGet=(limit=20,offset=0)=> {
     return axios({
         url: "/api/v1/product/getProducts",
         method: "GET",
@@ -60,6 +60,7 @@ export const ProductGet=()=> {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
         },
+        params:{limit,offset}
     })
 }
 
