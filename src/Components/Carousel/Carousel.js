@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Carousel({ ...props }) {
+  console.log(props);
   return (
     <div
       id={"carouselId" + props.Cid}
