@@ -2,7 +2,6 @@
   "name": "e-commerce-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://e-comapi-4m6x.onrender.com/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",

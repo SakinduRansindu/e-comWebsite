@@ -55,7 +55,7 @@ export default function BrowseProducts() {
         let imgs = [];
         if( element.ProductImgs.length>0){
           element.ProductImgs.forEach(ele => {
-            imgs.push(`/uploads/${ele.imgUrl}`);
+            imgs.push(`${process.env.REACT_APP_BASE_URL}/uploads/${ele.imgUrl}`);
           });
         }
         else{
@@ -81,7 +81,7 @@ export default function BrowseProducts() {
       // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
       setProduct([...products,...tmp]);
     }).catch((err)=>{
-      isloading(false);
+      setIsLoading(false);
       console.error(err);
     });
   }
