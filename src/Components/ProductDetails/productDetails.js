@@ -45,9 +45,11 @@ const ProductDetails = ({ pid, minimalData = false }) => {
           <div className="specifications">
             <h3 className="product-description-title">Description:</h3>
             <p className="product-description">{product.Description}</p>
-            <button onClick={() => alert(`${product.DisplayName} has been added to your cart!`)} disabled={product.AvailableUnits === 0} className="btn btn-success add-to-cart">
-              Add to Cart
-            </button>
+            <a href={`/payments/${product.ProductId}`}>
+              <button disabled={product.AvailableUnits === 0} className="btn btn-success add-to-cart">
+              Buy Now
+              </button>
+            </a>
           </div>
         </div>
       </div>
