@@ -4,7 +4,8 @@ import HeaderImage from "../Images/ecommerce.png";
 import Image from "../Images/image1.png";
 import Image2 from "../Images/image2.png";
 import logo2 from "../Images/logo2.png";
-
+import GlowButton from "../Components/Buttons/glowButton.js";
+import Button from "../Components/Buttons/button.js";
 
 export default function LandingPage() {
   return (
@@ -35,14 +36,14 @@ export default function LandingPage() {
         class="px-3"
         style={{
           backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
-          height: "90vh",
+          height: "91vh",
           backgroundSize: "cover",
           backgroundPosition: "center center",
           margin: "-80px -12px 0",
         }}
       >
         <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-          <img src={logo2} width="45%"  />
+          <img src={logo2} width="45%" />
         </div>
       </main>
 
@@ -50,19 +51,22 @@ export default function LandingPage() {
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
           <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
             <h1 class="display-4 fw-bold lh-1 text-body-emphasis">
-
               Welcome to MerchMora <br></br> E-commerce Store!
             </h1>
             <p class="lead">
               Shop the latest Mora trends and discover amazing deals.
             </p>
+            <br />
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
               <a
-                className="btn btn-outline-secondary btn-lg px-4"
+                className="link-underline link-underline-opacity-0"
                 href="/browse"
               >
-                Shop Now
+                <GlowButton
+                  label={"Shop Now"}
+                  className="btn btn-primary m-0"
+                />
               </a>
             </div>
           </div>

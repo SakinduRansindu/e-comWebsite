@@ -6,43 +6,50 @@ import defaultImg from '../Images/no-image.png';
 import { calculateDiscount } from '../API/ProductsApi';
 
 export default function BrowseProducts() {
-
-//   const imgs = [
-//     'https://i.pinimg.com/564x/97/67/95/976795f595eb9505ec36dd9277289b8c.jpg',
-//     'https://i.pinimg.com/564x/f3/a9/5d/f3a95d3e3f30a31de37c15d47ddc11b1.jpg',
-//     'https://i.pinimg.com/564x/62/4e/25/624e25adaaf72f67a420431fe53ca373.jpg',
-// ];
-
-// const products = [
-//   {
-//     title: "T-shirt",
-//     description: "description of the product",
-//     Imgs: imgs,
-//     productUrl: "about:blank",
-//     seller: "mora",
-//   },
-//   {
-//     title: "T-shirt 2",
-//     description: "description of the product",
-//     Imgs: imgs,
-//     productUrl: "about:blank",
-//     seller: "mora",
-//   },
-
-// ];
   const [products, setProduct] = useState([]);
-
+  const limit = 10;
+  const [offset, setOffset] = useState(0);
+  const [isAllLoaded, setIsAllLoaded] = useState(false);
+  const [isloading, setIsLoading] = useState(false);
+  const [reachEnd, setReachEnd] = useState(false);
+  
   useEffect(() => {
     getlist();
-  }, []);
+
+  const observer = new IntersectionObserver(()=>{setReachEnd(true)} , {threshold:0.5});
+  const root = document.getElementById('listend');
+  observer.observe(root);
+
+    }, []);
+
+  useEffect(() => { 
+    if(reachEnd){
+      getlist();
+      setReachEnd(false);
+    }
+  }, [reachEnd]);
 
   useEffect(() => {
     console.log(products);
   }, [products]);
 
   const getlist=()=> {
-    ProductGet().then((res)=>{
+    if(isAllLoaded){
+      console.log("all loaded");
+      return;
+    }
+    if(isloading){
+      console.log("loading");
+      return;
+    }
+    setIsLoading(true);
+    ProductGet(limit,offset).then((res)=>{
       console.log(res.data.products);
+      setOffset(offset+limit);
+      setIsLoading(false);
+      if(res.data.products.length<limit){
+        setIsAllLoaded(true);
+      }
       let tmp=[];
       res.data.products.map(element => {
         let imgs = [];
@@ -54,7 +61,7 @@ export default function BrowseProducts() {
         else{
           imgs.push(defaultImg);
         }
-        const { price, isDiscountApplied } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
+        const { price, isDiscountApplied ,remainingDays } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
         tmp.push({
           title:element.DisplayName,
           description:element.Description,
@@ -66,12 +73,15 @@ export default function BrowseProducts() {
           priceBeforeDiscount: element.UnitPrice, 
           availableUnits: element.AvailableUnits, 
           category: element.Category, 
-          productId: element.ProductId
+          productId: element.ProductId,
+          Discount: element.Discount,
+          remainingDays:remainingDays
         });
       });
       // setProduct([...products,{title:element.DisplayName,description:element.Description,Imgs:[defaultImg],productUrl:"/viewProduct/"+element.ProductId,seller:element.SId}]);
-      setProduct([...tmp]);
+      setProduct([...products,...tmp]);
     }).catch((err)=>{
+      isloading(false);
       console.error(err);
     });
   }
@@ -79,6 +89,23 @@ export default function BrowseProducts() {
   return (
     <Template renderSlideBar={true}>
         <ProductContainer ContainerTitle='' products={products}></ProductContainer>
+        <div className='container d-flex flex-align-center my-3' id="listend">
+          {!isAllLoaded?
+          <button className='btn btn-success mx-auto' onClick={()=>getlist()}>
+            {isloading?
+            (<>
+            <span class="spinner-grow spinner-grow-sm mx-1" role="status" aria-hidden="true"></span>
+            Loading...
+            </>)
+            :
+            (<>
+            Load More
+            </>)}
+          </button>
+          :
+          <></>
+          }
+        </div>
     </Template>
   )
 }

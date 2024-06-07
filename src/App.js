@@ -15,6 +15,7 @@ import LandingPage from './Pages/LandingPage';
 import ViewProduct from './Pages/ViewProduct';
 import SellerOrdersPage from './Pages/SellerOrdersPage';
 import BuyItem from './Pages/BuyItem';
+import Product from './Components/ProductDetails/productDetails';
 
 
 const router = createBrowserRouter([
@@ -68,7 +69,10 @@ function App() {
   return (
     <AuthWrapper>
       <RouterProvider router={router} />
+      
     </AuthWrapper>
+
+    
   );
 }
 
