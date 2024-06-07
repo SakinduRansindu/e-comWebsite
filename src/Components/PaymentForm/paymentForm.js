@@ -8,7 +8,7 @@ import { AuthData} from '../../Components/AuthWrapper/AuthWrapper';
 
 function PaymentForm({pid,maxUnits=10}) {
 
-  const {CheckSessionErrors} = AuthData();
+  const {user,CheckSessionErrors} = AuthData();
 
   const [name, setName] = useState("");
   const [units, setUnits] = useState(1);
@@ -17,7 +17,7 @@ function PaymentForm({pid,maxUnits=10}) {
   const [expiryDate, setExpiryDate] = useState("");
   const [message, setMessage] = useState({color:'alert-danger',message:'',isSuccess:false});
   const [display,setDisplay] = useState(false);
-
+  const [isLogedUser,setIsLogedUser] = useState(false);
 
 
   const clear=()=>{
@@ -43,6 +43,15 @@ function PaymentForm({pid,maxUnits=10}) {
       }
     },5000);
   },[message]);
+
+  useEffect(()=>{
+    if(user.role==="customer"){
+      setIsLogedUser(true);
+    }
+    else{
+      setIsLogedUser(false);
+    }
+  },[]);
 
   const validate=()=>{
     if(name.length<1){
@@ -98,7 +107,9 @@ function PaymentForm({pid,maxUnits=10}) {
 
 
   return (
-    <form className="container mx-auto my-3 border dark2 rounded p-3">
+    <>
+    { isLogedUser?
+    (<form className="container mx-auto my-3 border dark2 rounded p-3">
          <h1>Payment</h1>
       <TextInput
         type="text"
@@ -150,7 +161,13 @@ function PaymentForm({pid,maxUnits=10}) {
               <button disabled={display} className="btn btn-success float-end" onClick={(e)=>pay(e)}>Pay</button>
           </div>
       </div>
-    </form>
+    </form>)
+    :
+    (<div className="container mx-auto my-3 border dark2 rounded p-3">
+      <Alert title="Sorry" message="You have to loged with a user account to buy this." type="alert-info"></Alert>
+    </div>)
+  }
+</>
   );
 }
 

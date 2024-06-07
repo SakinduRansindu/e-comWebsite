@@ -133,6 +133,7 @@ export default function Login() {
                             id="email"
                             value={email}
                             placeholder="name@example.com"
+                            htmlFor="email"
                             onChange={(e) => setEmail(e.target.value)}
                             required
                           />
@@ -149,6 +150,7 @@ export default function Login() {
                             name="password"
                             id="password"
                             value={password}
+                            htmlFor="password"
                             placeholder="Password"
                             required
                             onChange={(e) => setPassword(e.target.value)}
