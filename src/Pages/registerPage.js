@@ -18,13 +18,17 @@ export default function RegisterPage() {
             <span class="fs-4">Register</span>
           </header>
 
-          <div class="row align-items-md-stretch">
-            <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark border rounded-3">
+          <div class="row align-items-md-stretch ">
+            <div class="col-md-6 py-1">
+              <div
+                class="h-100 p-5 rounded-3"
+                style={{ backgroundColor: "#1A2029" }}
+              >
                 <h2>For Customers</h2>
                 <p>browse items</p>
                 <button
-                  class="btn btn-outline-light"
+                  class="btn"
+                  style={{ backgroundColor: "#2C384D" }}
                   type="button"
                   onClick={() => setIsCustomer(true)}
                 >
@@ -32,12 +36,16 @@ export default function RegisterPage() {
                 </button>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="h-100 p-5 text-bg-dark border rounded-3">
+            <div class="col-md-6 py-1">
+              <div
+                class="h-100 p-5 rounded-3"
+                style={{ backgroundColor: "#1A2029" }}
+              >
                 <h2>For Sellers</h2>
                 <p>Sell items</p>
                 <button
-                  class="btn btn-outline-light"
+                  class="btn"
+                  style={{ backgroundColor: "#2C384D" }}
                   type="button"
                   onClick={() => setIsSeller(true)}
                 >
