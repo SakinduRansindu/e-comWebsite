@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Template from "./Template/Template";
 import HeaderImage from "../Images/ecommerce.png";
 import Image from "../Images/image1.png";
@@ -6,8 +6,72 @@ import Image2 from "../Images/image2.png";
 import logo2 from "../Images/logo2.png";
 import GlowButton from "../Components/Buttons/glowButton.js";
 import Button from "../Components/Buttons/button.js";
+import {ProductGet} from "../API/ProductsApi";
+import ProductItem from "../Components/ProductItem/ProductItem.js";
+import defaultImg from "../Images/no-image.png";
+import { calculateDiscount } from '../API/ProductsApi';
+import Carousel from "../Components/Carousel/Carousel.js";
+import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
+
 
 export default function LandingPage() {
+
+  const [products, setProduct] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
+  const limit = 10;
+
+
+  const getlist=()=> {
+    if(isloading){
+      console.log("loading");
+      return;
+    }
+    setIsLoading(true);
+    console.log("start loading");
+    ProductGet(limit,0).then((res)=>{
+      console.log(res.data.products);
+      setIsLoading(false);
+      let tmp=[];
+      res.data.products.map(element => {
+        let imgs = [];
+        if( element.ProductImgs.length>0){
+          element.ProductImgs.forEach(ele => {
+            imgs.push(`${process.env.REACT_APP_BASE_URL}/uploads/${ele.imgUrl}`);
+          });
+        }
+        else{
+          imgs.push(defaultImg);
+        }
+        const { price, isDiscountApplied ,remainingDays } = calculateDiscount(element.UnitPrice, element.Discount, element.DiscountEndDate);
+        tmp.push({
+          title:element.DisplayName,
+          description:element.Description,
+          Imgs:imgs,
+          productUrl:"/viewProduct/"+element.ProductId,
+          seller:element.Seller.DisplayName, 
+          Price:price, 
+          isDiscountApplied: isDiscountApplied,
+          priceBeforeDiscount: element.UnitPrice, 
+          availableUnits: element.AvailableUnits, 
+          category: element.Category, 
+          productId: element.ProductId,
+          Discount: element.Discount,
+          remainingDays:remainingDays
+        });
+      });
+      setProduct([...tmp]);
+    }).catch((err)=>{
+      setIsLoading(false);
+      console.error(err);
+    });
+  }
+
+  useEffect(() => {
+    getlist();
+  }
+  , []);
+
+
   return (
     <Template renderSlideBar={false}>
       {/*<div>
@@ -88,6 +152,9 @@ export default function LandingPage() {
               loading="lazy"
             />
           </div>
+
+        
+
           <div class="col-lg-6">
             <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
               Ready to Show Your Mora Pride?
@@ -101,6 +168,30 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      <div class="col-lg-6 mx-auto">
+          {products.map((product,index) => 
+              (
+                <div className="bg-info p-2 my-2">
+                
+
+                <div>imgs:{product.imgs}</div>
+                <Carousel Imgs={product.Imgs} style={{width:'100px',height:'70px'}} Cid="top-products"></Carousel>
+                <div>title:{product.title}</div>
+                <div>price:{product.Price}</div>
+                <div>productUrl:{product.productUrl}</div>
+                <div>isDiscountApplied:{product.isDiscountApplied}</div>
+                <div>availableUnits:{product.availableUnits}</div>
+                <div>priceBeforeDiscount:{product.priceBeforeDiscount}</div>
+                <div>seller:{product.seller}</div>
+                <div>discount:{product.discount}</div>
+                <div>remainingDays:{product.remainingDays}</div>
+                </div>
+              )
+          )}
+
+        </div>
+
     </Template>
   );
 }
