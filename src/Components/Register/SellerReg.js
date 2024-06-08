@@ -313,7 +313,8 @@ export default function SellerReg() {
                   <div class="col-12">
                     <div class="d-grid">
                       <button
-                        className="btn btn-primary btn-lg"
+                        className="btn btn-lg text-black"
+                        style={{ backgroundColor: "#A1BFF4" }}
                         disabled={display}
                         onClick={(e) => register(e)}
                         type="submit"

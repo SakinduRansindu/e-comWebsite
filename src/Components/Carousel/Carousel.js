@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Carousel({ ...props }) {
+  console.log(props);
   return (
     <div
       id={"carouselId" + props.Cid}
@@ -18,7 +19,7 @@ export default function Carousel({ ...props }) {
             >
               <img
                 src={e}
-                className="d-block w-100 Cimg rounded-2"
+                className="d-block w-100 rounded-2 "
                 alt={"Product Item " + props.Cid}
               />
             </div>

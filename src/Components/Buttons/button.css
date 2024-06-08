@@ -1,0 +1,16 @@
+.btn1 {
+    background-color: #A1BFF4;
+    color: black;
+    padding: 5px 20px;
+    border-radius: 5px;
+    border: 0px;
+    cursor: pointer;
+    width: auto;
+    transition: 0.2s;
+  }
+
+    .btn1:hover {
+        background-color: #345faa;
+        color: white;
+        
+    }
