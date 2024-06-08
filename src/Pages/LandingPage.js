@@ -11,7 +11,7 @@ import ProductItem from "../Components/ProductItem/ProductItem.js";
 import defaultImg from "../Images/no-image.png";
 import { calculateDiscount } from "../API/ProductsApi";
 import Carousel from "../Components/Carousel/Carousel.js";
-import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import { height, width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
 export default function LandingPage() {
   const [products, setProduct] = useState([]);
@@ -101,7 +101,7 @@ export default function LandingPage() {
       <main
         class="px-3"
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0, .9), rgba(0,0,0, .9)),url(${HeaderImage})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0, .9),rgba(0,0,0, .9),rgba(0,0,0, .9),rgba(0,0,0, .9), rgba(13,17,23, 1)),url(${HeaderImage})`,
           height: "91vh",
           backgroundSize: "cover",
           backgroundPosition: "center center",
@@ -109,7 +109,13 @@ export default function LandingPage() {
         }}
       >
         <div class="d-flex flex-column h-100 justify-content-center align-items-center">
-          <img src={logo2} width="45%" />
+          <img
+            src={logo2}
+            style={{
+              maxHeight: "40%",
+            }}
+            className="img-fluid p-4"
+          />
         </div>
       </main>
 
@@ -170,6 +176,16 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
+        </div>
+        <div className="d-flex justify-content-center my-5">
+          <a className="link-underline link-underline-opacity-0" href="/browse">
+            <button
+              className="btn btn-lg shadow-4 px-5 py-2"
+              style={{ backgroundColor: "#2C384D" }}
+            >
+              Shop More
+            </button>
+          </a>
         </div>
       </div>
 
