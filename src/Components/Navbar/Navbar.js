@@ -81,14 +81,16 @@ export default function Navbar({ ...props }) {
                 {user.isLogedIn ? (
                   <button
                     onClick={() => navigate("/logout")}
-                    className="btn btn-outline-light"
+                    className="btn"
+                    style={{ backgroundColor: "#2C384D" }}
                   >
                     Logout
                   </button>
                 ) : (
                   <button
                     onClick={() => navigate("/login")}
-                    className="btn btn-outline-light"
+                    className="btn"
+                    style={{ backgroundColor: "#2C384D" }}
                   >
                     Login
                   </button>

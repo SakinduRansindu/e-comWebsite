@@ -38,7 +38,8 @@ export default function SlideBar({ ...props }) {
             Category:
           </label>
           <select
-            className="form-select bg-primary-subtle border border-primary-subtle"
+            className="form-select shadow border"
+            style={{ backgroundColor: "#2C384D" }}
             id="category-select"
           >
             <option value="">All</option>
@@ -53,7 +54,8 @@ export default function SlideBar({ ...props }) {
             Organization:
           </label>
           <select
-            className="form-select bg-primary-subtle border border-primary-subtle"
+            className="form-select shadow-4 border"
+            style={{ backgroundColor: "#2C384D" }}
             id="organization-select"
           >
             <option value="">All</option>
@@ -65,7 +67,8 @@ export default function SlideBar({ ...props }) {
 
         <div className="mb-3">
           <button
-            className="btn bg-primary-subtle bg-opacity-10 border border-primary-subtle"
+            className="btn shadow"
+            style={{ backgroundColor: "#2C384D" }}
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#search-slider"
@@ -76,7 +79,8 @@ export default function SlideBar({ ...props }) {
         </div>
 
         <button
-          className="btn bg-primary-subtle bg-opacity-10 border border-primary-subtle position-absolute bottom-0 m-3 end-0"
+          className="btn shadow position-absolute bottom-0 m-3 end-0"
+          style={{ backgroundColor: "#2C384D" }}
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#search-slider"

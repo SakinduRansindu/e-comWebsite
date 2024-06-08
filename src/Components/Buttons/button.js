@@ -1,22 +1,13 @@
 import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
+import { hover } from "@testing-library/user-event/dist/hover";
 import React from "react";
+import "./button.css";
 
 const Button = ({ label, onClick, disabled, variant = "primary" }) => {
   // Define button styles based on variant
-  const buttonStyles = {
-    primary: {
-      backgroundColor: "#A1BFF4",
-      color: "black",
-      padding: "5px 20px",
-      borderRadius: "5px",
-      border: "0px",
-      cursor: "pointer",
-      width: "auto",
-    },
-  };
 
   return (
-    <button disabled={disabled} style={buttonStyles[variant]}>
+    <button disabled={disabled} className="btn1">
       {label}
     </button>
   );

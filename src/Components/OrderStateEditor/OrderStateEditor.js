@@ -28,18 +28,21 @@ const OrderStateEditor = ({ initialState, orderId }) => {
   return (
     <div>
       {!showSelect ? (
-        <button className="btn btn-primary" onClick={handleSetStateClick}>
+        <button
+          className="btn btn-primary-subtle btn-outline-primary text-primary-emphasis"
+          onClick={handleSetStateClick}
+        >
           Set State
         </button>
       ) : (
         <div>
           <select value={orderState} onChange={handleStateChange}>
-            <option value="pending">Pending</option>
+            <option value="pending ">Pending</option>
             <option value="delivered">Delivered</option>
             <option value="cancelled">Cancelled</option>
           </select>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary-subtle btn-outline-primary text-primary-emphasis"
             label="Save"
             onClick={handleUpdateState}
           >

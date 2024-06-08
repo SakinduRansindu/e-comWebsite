@@ -18,11 +18,13 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
     }
     
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/product/add",
         method: "POST",
         headers: {
             'Content-Type': 'multipart/form-data',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
         data: formData,
 
@@ -31,11 +33,14 @@ export const ProductAdd=( Category, AvailableUnits, DisplayName, Description, Un
 
 export const SetSellerOrderStatus = (id,state)=>{
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
+        timeout: 10000,
         url: `/api/v1/order/setState/${id}`,
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
         data: JSON.stringify({state})
     })
@@ -43,22 +48,26 @@ export const SetSellerOrderStatus = (id,state)=>{
 
 export const CustomerOrdersState = ()=>{
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: `/api/v1/order/customer`,
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin":process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
     })
 }
 
 export const ProductGet=(limit=20,offset=0)=> {
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/product/getProducts",
+        timeout: 10000,
         method: "GET",
         headers: {
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
         },
         params:{limit,offset}
     })
@@ -66,11 +75,14 @@ export const ProductGet=(limit=20,offset=0)=> {
 
 export const SellerOrders =(SId)=> {
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
+        timeout: 10000,
         url: '/api/v1/order/',
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
         data: JSON.stringify({SId})
     })
@@ -78,22 +90,26 @@ export const SellerOrders =(SId)=> {
 
 export const GetProductDetails=(productId)=> {
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: `/api/v1/product/getProductDetails?productId=${productId}`,
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
     })
 }
 
 export const PurchaseProduct = (ProductId,Units)=>{
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: `/api/v1/purchase`,
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
         data: JSON.stringify({ProductId,Units})
     })
