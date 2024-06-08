@@ -6,7 +6,7 @@ import { PurchaseProduct } from '../../API/ProductsApi';
 import { AuthData } from '../../Components/AuthWrapper/AuthWrapper';
 
 function PaymentForm({ pid, maxUnits = 10 }) {
-  const { CheckSessionErrors } = AuthData();
+  const { user, CheckSessionErrors } = AuthData();
 
   const [name, setName] = useState("");
   const [units, setUnits] = useState(1);

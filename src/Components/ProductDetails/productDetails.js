@@ -159,7 +159,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     );
   } else if (minimalData && state === "loaded") {
     return (
