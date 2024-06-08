@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Carousel from '../Carousel/Carousel';
 import { GetProductDetails } from '../../API/ProductsApi';
 import Alert from '../Alert/Alert';
-import './productDetails.css'; // Import the CSS file
 
 const ProductDetails = ({ pid, minimalData = false }) => {
   const [product, setProduct] = useState({});
@@ -31,30 +30,138 @@ const ProductDetails = ({ pid, minimalData = false }) => {
     }
   }, [product, minimalData]);
 
+  const styles = {
+    container: {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      margin: '0 auto',
+      padding: '20px',
+      maxWidth: '1200px',
+    },
+    productDetails: {
+      display: 'flex',
+      flexDirection: 'row',
+      gap: '20px',
+      marginTop: '20px',
+      width: '100%',
+      border: '2px solid #ddd',
+      borderRadius: '10px', 
+      padding: '20px', 
+    },
+    productImage: {
+      flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    productInfo: {
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+    },
+    productName: {
+      fontSize: '2rem',
+      fontWeight: 'bold',
+      marginBottom: '10px',
+      color: 'white',
+    },
+    productPrice: {
+      fontSize: '1.5rem',
+      color: '#FF0000',
+    },
+    strike: {
+      textDecoration: 'line-through',
+      color: '#666',
+      fontSize: '1rem',
+    },
+    productCategory: {
+      fontSize: '1.2rem',
+      color: '#ddd',
+    },
+    productUnits: {
+      fontSize: '1.2rem',
+      color: '#ddd',
+    },
+    productOutOfStock: {
+      fontSize: '1.2rem',
+      color: 'red',
+    },
+    specifications: {
+      marginTop: '20px',
+    },
+    productDescriptionTitle: {
+      fontSize: '1.5rem',
+      marginBottom: '10px',
+      color: '#ddd',
+    },
+    productDescription: {
+      fontSize: '1.2rem',
+      color: '#666',
+    },
+    button: {
+      padding: '8px 18px',
+      fontSize: '1rem',
+      border: 'none',
+      borderRadius: '5px',
+      cursor: 'pointer',
+      backgroundColor: '#007bff',
+      color: 'white',
+    },
+    buttonDisabled: {
+      backgroundColor: '#cccccc',
+      cursor: 'not-allowed',
+    },
+    card: {
+      border: '1px solid #ddd',
+      borderRadius: '5px',
+      padding: '20px',
+      marginTop: '20px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      backgroundColor: '#f8f9fa',
+      width: '50%',
+      margin: '0 auto',
+    },
+  };
+
   if (!minimalData && state === 'loaded') {
     return (
-      <div className="product-details">
-        <div className="product-image">
-          <Carousel Imgs={imgs} style={{ maxHeight: '80vw' }} Cid=""></Carousel>
-        </div>
-        <div className="product-info">
-          <h2 className="product-name">{product.DisplayName}</h2>
-          <p className="product-price">Price: <strike>Rs.{product.UnitPrice}</strike> Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
-          <p className="product-category">Category: {product.Category}</p>
-          {product.AvailableUnits > 0 ? <p className="product-units">Available Units: {product.AvailableUnits}</p> : <p className="product-out-of-stock">Out of Stock</p>}
-          <div className="specifications">
-            <h3 className="product-description-title">Description:</h3>
-            <p className="product-description">{product.Description}</p>
-            <button onClick={() => alert(`${product.DisplayName} has been added to your cart!`)} disabled={product.AvailableUnits === 0} className="btn btn-success add-to-cart">
-              Add to Cart
-            </button>
+      <div style={styles.container}>
+        <div style={styles.productDetails}>
+          <div style={styles.productImage}>
+            <Carousel Imgs={imgs} style={{ maxHeight: '80vw' }} Cid=""></Carousel>
+          </div>
+          <div style={styles.productInfo}>
+            <h2 style={styles.productName}>{product.DisplayName}</h2>
+            <p style={styles.productPrice}>
+              Price: Rs.{product.UnitPrice * (100 - product.Discount) / 100} <span style={styles.strike}>Rs.{product.UnitPrice}</span>
+            </p>
+            <p style={styles.productCategory}>Category: {product.Category}</p>
+            {product.AvailableUnits > 0 ? (
+              <p style={styles.productUnits}>Available Units: {product.AvailableUnits}</p>
+            ) : (
+              <p style={styles.productOutOfStock}>Out of Stock</p>
+            )}
+            <div style={styles.specifications}>
+              <h3 style={styles.productDescriptionTitle}>Description:</h3>
+              <p style={styles.productDescription}>{product.Description}</p>
+              <a href={`/payments/${product.ProductId}`}>
+                <button
+                  disabled={product.AvailableUnits === 0}
+                  style={product.AvailableUnits === 0 ? { ...styles.button, ...styles.buttonDisabled } : styles.button}
+                >
+                  Buy Now
+                </button>
+              </a>
+            </div>
           </div>
         </div>
       </div>
     );
   } else if (minimalData && state === 'loaded') {
     return (
-      <div className="card w-50 mx-auto bg-success">
+      <div style={styles.card}>
         <div className="container m-1">
           <h4>{product.DisplayName}</h4>
           <p>Discount: {product.Discount}%</p>
