@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../Carousel/Carousel";
 import { GetProductDetails } from "../../API/ProductsApi";
 import Alert from "../Alert/Alert";
+import { useNavigate } from "react-router-dom";
 import "./productDetails.css"; // Import the CSS file
 
 const ProductDetails = ({ pid, minimalData = false }) => {
@@ -32,6 +33,12 @@ const ProductDetails = ({ pid, minimalData = false }) => {
       setState("loaded");
     }
   }, [product, minimalData]);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/payments/${product.ProductId}`);
+  };
 
   if (!minimalData && state === "loaded") {
     return (
@@ -86,17 +93,14 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                   </span>
                 </div>
                 <div class="d-flex flex-row ">
-                  <a
-                    className="link-underline link-underline-opacity-0"
-                    href={`/payments/${product.ProductId}`}
+                  <button
+                    disabled={product.AvailableUnits === 0}
+                    className="btn btn-light add-to-cart px-5"
+                    onClick={handleClick}
                   >
-                    <button
-                      disabled={product.AvailableUnits === 0}
-                      className="btn btn-light add-to-cart px-5"
-                    >
-                      Buy Now
-                    </button>
-                  </a>
+                    Buy Now
+                  </button>
+
                   <button
                     onClick={() =>
                       alert(
