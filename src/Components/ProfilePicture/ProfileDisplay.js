@@ -14,7 +14,7 @@ export default function ProfileDisplay({
         className={"align-self-end ms-auto mx-2 rounded " + overwriteClassName}
       >
         <img
-          src={profilePicUrl || ProfilePictureDefault}
+          src={profilePicUrl?`${process.env.REACT_APP_BASE_URL}${profilePicUrl}`:ProfilePictureDefault}
           style={{ width: "35px", height: "35px", backgroundClip: "center" }}
           alt="Profile picture"
           className="rounded-circle border col mx-1 "

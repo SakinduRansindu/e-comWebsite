@@ -3,6 +3,7 @@ import { AuthData } from "../AuthWrapper/AuthWrapper";
 import { useNavigate } from "react-router-dom";
 import ProfileDisplay from "../ProfilePicture/ProfileDisplay";
 import logo1 from "../../Images/logo1.png";
+import "./Navbar.css";
 
 export default function Navbar({ ...props }) {
   const { user } = AuthData();
@@ -19,12 +20,21 @@ export default function Navbar({ ...props }) {
     <>
       <div class="container fixed-top my-3 ">
         <nav
-          className="navbar navbar-expand-lg  sticky-top shadow rounded"
+          className="navbar navbar-expand-lg  sticky-top rounded-3"
           aria-label="Eleventh navbar example"
         >
           <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              <img src={logo1} height="45" style={{objectFit: 'cover',margin: 0,padding: 0,border: 'none',}}/>
+            <a className="navbar-brand p-0" href="/">
+              <img
+                src={logo1}
+                height="40"
+                style={{
+                  objectFit: "cover",
+                  margin: 0,
+                  padding: 0,
+                  border: "none",
+                }}
+              />
             </a>
 
             <ProfileDisplay
@@ -71,14 +81,16 @@ export default function Navbar({ ...props }) {
                 {user.isLogedIn ? (
                   <button
                     onClick={() => navigate("/logout")}
-                    className="btn btn-outline-light"
+                    className="btn"
+                    style={{ backgroundColor: "#2C384D" }}
                   >
                     Logout
                   </button>
                 ) : (
                   <button
                     onClick={() => navigate("/login")}
-                    className="btn btn-outline-light"
+                    className="btn"
+                    style={{ backgroundColor: "#2C384D" }}
                   >
                     Login
                   </button>

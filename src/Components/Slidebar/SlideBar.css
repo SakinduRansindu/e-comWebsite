@@ -1,6 +1,5 @@
-nav{
-    
-    background: rgba(33, 43, 61, 0.7);
+#glass,#search-slider{
+    background: rgba(44, 56, 77, 0.7);
     backdrop-filter: blur(17.3px);
     -webkit-backdrop-filter: blur(17.3px);
 }

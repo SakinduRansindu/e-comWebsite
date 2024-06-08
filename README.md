@@ -1,3 +1,23 @@
+
+![logo2](https://github.com/SakinduRansindu/e-comWebsite/assets/67496875/a064d5ff-993e-4745-acc7-dc87d49bec1a)
+
+
+<img src="https://github.com/SakinduRansindu/e-comWebsite/assets/67496875/9d1b87b4-0018-4c74-8086-b550b8ea6a8c" style="border:'1px solid green';border-radius:'50%'" alt="screenshot of webproject" />
+
+<br/><br/>
+
+| Registeration for both sellers & buyers | Database design | Browse Items |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img src="https://github.com/SakinduRansindu/e-comWebsite/assets/67496875/e9d373ae-21db-4ac3-bb8a-99409f5156c3" alt="screenshot of webproject" />|<img src="https://github.com/SakinduRansindu/e-comWebsite/assets/67496875/fdf59cf9-454d-4281-b128-73adef2224d1" alt="screenshot of webproject" />|<img src="https://github.com/SakinduRansindu/e-comWebsite/assets/67496875/300cbc23-0437-4bd0-bead-9fd10001a44a" alt="screenshot of webproject" />|
+
+<br/><br/>
+
+# Links
+  ##   Live Website : [Click here](https://merchmora-website.onrender.com)
+  ##   Backend : [REPO](https://github.com/SakinduRansindu/e-comAPI) | [Live](https://e-comapi-4m6x.onrender.com/api/v1/)
+  
+<br/><br/>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

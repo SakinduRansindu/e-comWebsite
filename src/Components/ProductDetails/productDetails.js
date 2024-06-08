@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import Carousel from '../Carousel/Carousel';
-import { GetProductDetails } from '../../API/ProductsApi';
-import Alert from '../Alert/Alert';
+import React, { useEffect, useState } from "react";
+import Carousel from "../Carousel/Carousel";
+import { GetProductDetails } from "../../API/ProductsApi";
+import Alert from "../Alert/Alert";
+import "./productDetails.css"; // Import the CSS file
+
 
 const ProductDetails = ({ pid, minimalData = false }) => {
   const [product, setProduct] = useState({});
-  const [state, setState] = useState('loading');
+  const [state, setState] = useState("loading");
   const [imgs, setImgs] = useState([]);
 
   useEffect(() => {
@@ -16,17 +18,17 @@ const ProductDetails = ({ pid, minimalData = false }) => {
       })
       .catch((err) => {
         console.error(err);
-        setState('error');
+        setState("error");
       });
   }, [pid]);
 
   useEffect(() => {
     if (!minimalData && product?.ProductImgs) {
-      const tmpImgs = product.ProductImgs.map((img) => "/uploads/" + img.imgUrl);
+      const tmpImgs = product.ProductImgs.map((img) => `${process.env.REACT_APP_BASE_URL}/uploads/` + img.imgUrl);
       setImgs(tmpImgs);
-      setState('loaded');
+      setState("loaded");
     } else if (minimalData && product?.DisplayName) {
-      setState('loaded');
+      setState("loaded");
     }
   }, [product, minimalData]);
 
@@ -157,22 +159,36 @@ const ProductDetails = ({ pid, minimalData = false }) => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     );
-  } else if (minimalData && state === 'loaded') {
+  } else if (minimalData && state === "loaded") {
     return (
       <div style={styles.card}>
         <div className="container m-1">
           <h4>{product.DisplayName}</h4>
           <p>Discount: {product.Discount}%</p>
-          <p>Price: Rs. {product.UnitPrice * (100 - product.Discount) / 100}</p>
+          <p>
+            Price: Rs. {(product.UnitPrice * (100 - product.Discount)) / 100}
+          </p>
         </div>
       </div>
     );
-  } else if (state === 'loading') {
-    return <Alert title={"Loading"} message={"Please wait while we load the product details"} type={"alert-info"} />;
-  } else if (state === 'error') {
-    return <Alert title={"Error"} message={"There was an error loading the product details"} type={"alert-danger"} />;
+  } else if (state === "loading") {
+    return (
+      <Alert
+        title={"Loading"}
+        message={"Please wait while we load the product details"}
+        type={"alert-info"}
+      />
+    );
+  } else if (state === "error") {
+    return (
+      <Alert
+        title={"Error"}
+        message={"There was an error loading the product details"}
+        type={"alert-danger"}
+      />
+    );
   }
 
   return null;

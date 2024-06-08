@@ -5,20 +5,19 @@ import ProductItem from "../ProductItem/ProductItem";
 export default class ProductContainer extends Component {
   render() {
     return (
-      <div className="container-sm dark2 mt-5 rounded">
+      <div className="container-sm py-1 my-3  mt-5 rounded">
         {this.props.ContainerTitle ? (
           <h1 className="text-center">{this.props.ContainerTitle}</h1>
         ) : (
           <></>
         )}
         <div className="container-fluid mt-5">
-          <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-1 g-md-4 g-md-5">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
             {this.props.products.map((product, index) => (
               <ProductItem
                 key={index}
                 id={index}
                 Imgs={product.Imgs}
-                description={product.description}
                 title={product.title}
                 price={product.Price}
                 productUrl={product.productUrl}
@@ -26,6 +25,8 @@ export default class ProductContainer extends Component {
                 availableUnits={product.availableUnits}
                 priceBeforeDiscount={product.priceBeforeDiscount}
                 seller={product.seller}
+                discount = {product.Discount}
+                remainingDays = {product.remainingDays}
               ></ProductItem>
             ))}
           </div>

@@ -13,8 +13,10 @@ function PaymentForm({ pid, maxUnits = 10 }) {
   const [cardNumber, setCardNumber] = useState("");
   const [cvc, setCvc] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
-  const [message, setMessage] = useState({ color: 'alert-danger', message: '', isSuccess: false });
-  const [display, setDisplay] = useState(false);
+  const [message, setMessage] = useState({color:'alert-danger',message:'',isSuccess:false});
+  const [display,setDisplay] = useState(false);
+  const [isLogedUser,setIsLogedUser] = useState(false);
+
 
   const clear = () => {
     setName("");
@@ -40,9 +42,19 @@ function PaymentForm({ pid, maxUnits = 10 }) {
     }, 5000);
   }, [message]);
 
-  const validate = () => {
-    if (name.length < 1) {
-      setMessage({ color: 'alert-danger', message: 'Name is required', isSuccess: false });
+
+  useEffect(()=>{
+    if(user.role==="customer"){
+      setIsLogedUser(true);
+    }
+    else{
+      setIsLogedUser(false);
+    }
+  },[]);
+
+  const validate=()=>{
+    if(name.length<1){
+      setMessage({color:'alert-danger',message:'Name is required',isSuccess:false});
       setDisplay(true);
       return false;
     }
@@ -90,8 +102,10 @@ function PaymentForm({ pid, maxUnits = 10 }) {
   };
 
   return (
-    <form className="container mx-auto my-3 p-4" style={styles.form}>
-      <h1 style={styles.title}>Payment</h1>
+    <>
+    { isLogedUser?
+    (<form className="container mx-auto my-3 border dark2 rounded p-3">
+         <h1>Payment</h1>
       <TextInput
         type="text"
         label="Name with initials"
@@ -139,7 +153,13 @@ function PaymentForm({ pid, maxUnits = 10 }) {
         <button disabled={display} type="button" onClick={clear} style={{ ...styles.button, ...styles.clearButton }}>Clear</button>
         <button disabled={display} onClick={pay} style={{ ...styles.button, ...styles.payButton }}>Pay</button>
       </div>
-    </form>
+    </form>)
+    :
+    (<div className="container mx-auto my-3 border dark2 rounded p-3">
+      <Alert title="Sorry" message="You have to loged with a user account to buy this." type="alert-info"></Alert>
+    </div>)
+  }
+</>
   );
 }
 

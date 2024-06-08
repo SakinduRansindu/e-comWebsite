@@ -2,19 +2,23 @@ import React from 'react'
 import axios from "axios";
 
 
+axios.defaults.withCredentials = true;
+
 export const createUser = async (uname, FirstName, LastName, Email, Password, Account_No, Card_CVC, Card_Exp, Phone_No, ProfilePicture) => {
     console.log('createUser');
     const body_data = JSON.stringify({ uname, FirstName, LastName, Email, Password, Account_No, Card_CVC, Card_Exp, Phone_No, ProfilePicture });
     console.log(body_data);
 
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/auth/userReg",
         method: "POST",
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
             'redirect': "follow",
+            "Access-Control-Allow-Credentials": true,
         },
         data: body_data,
     })
@@ -26,13 +30,15 @@ export const createSeller = async (DisplayName, Email, Password, Bank_Acc_No, Ph
     console.log(body_data);
 
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/auth/sellerReg",
         method: "POST",
         mode: 'cors',
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
             'redirect': "follow",
+            "Access-Control-Allow-Credentials": true,
         },
         data: body_data,
     })
@@ -43,12 +49,13 @@ export const testCreate = () => {
 
 
     axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/auth/test",
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
-
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
     })
         .then((res) => { console.log(res); })
@@ -65,6 +72,7 @@ export const validateLogin = async (email, password) => {
     }
     const body_data = JSON.stringify({ email, password });
     const res = await axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/auth/login",
         method: "POST",
         credentials:true,
@@ -72,6 +80,7 @@ export const validateLogin = async (email, password) => {
         headers: {
             'Content-Type': 'application/json',
             "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": true,
             'Accept':'*/*',
         },
         data: body_data,
@@ -82,13 +91,15 @@ export const validateLogin = async (email, password) => {
 export const Serverlogout = async () => {
     console.log('logout');
     return axios({
+        baseURL: process.env.REACT_APP_BASE_URL,
         url: "/api/v1/auth/logout",
         method: "POST",
         credentials:true,
         redirect: 'follow',
         headers: {
             'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_BASE_URL,
+            "Access-Control-Allow-Credentials": true,
         },
     });
 }
