@@ -4,6 +4,9 @@ import ProfilePictureSet from "../ProfilePicture/ProfilePictureSet";
 import { useState, useEffect } from "react";
 import { createUser } from "../../API/API";
 import Alert from "../Alert/Alert";
+import { useNavigate } from "react-router-dom";
+import { AuthData } from "../AuthWrapper/AuthWrapper";
+// from AuthWrapper
 
 export default function CustomerReg() {
   const [username, setUsername] = useState("");
@@ -20,6 +23,9 @@ export default function CustomerReg() {
     isSuccess: false,
   });
   const [display, setDisplay] = useState(false);
+
+  const navigate = useNavigate();
+  const { userAutoLoginAtRegistration, userLogin ,user , clearMsgs} = AuthData();
 
   const clear = () => {
     setUsername("");
@@ -60,16 +66,48 @@ export default function CustomerReg() {
       Phone_No,
       ProfilePictureLink
     )
+    .then((res) => {
+      console.log(res.data.message);
+      setMessage({
+        color: "alert-success",
+        message: res.data.message,
+        isSuccess: true,
+      });
+      setDisplay(true);
+
+      // try {
+      //   userAutoLoginAtRegistration(res.data);
+      //   navigate("/browse");
+      // } catch (err) {
+      //   console.error(err.message);
+      //   setMessage({
+      //     color: "alert-danger",
+      //     message: err.message,
+      //     isSuccess: false,
+      //   });
+      //   setDisplay(true);
+      //   clearMsgs();
+      // }
+      // the userAutoLoginAtRegistration thing didnt work for somereason, nav bar gets the user name, but state isnt saved
+
+      //check if we can just login the user manually, cuz we already have the email password
+      userLogin(Email, password)
       .then((res) => {
-        console.log(res.data.message);
-        setMessage({
-          color: "alert-success",
-          message: res.data.message,
-          isSuccess: true,
-        });
+        setMessage({ color: "alert-success", message: res, hasError: false });
         setDisplay(true);
+        console.log(res);
+        navigate("/browse");
       })
       .catch((err) => {
+        console.error(err);
+        setMessage({ color: "alert-danger", message: err, hasError: true });
+        setPassword("");
+        setDisplay(true);
+      });
+    })
+      .catch((err) => {
+       
+        if (err.response && err.response.data && err.response.data.message) {
         console.error(err.response.data.message);
         setMessage({
           color: "alert-danger",
@@ -77,6 +115,23 @@ export default function CustomerReg() {
           isSuccess: false,
         });
         setDisplay(true);
+        } else if (err.response && err.response.data) {
+          console.error(err.message);
+          setMessage({
+            color: "alert-danger",
+            message: err.message,
+            isSuccess: false,
+          });
+          setDisplay(true);
+        } else {
+          console.error(err.message);
+          setMessage({
+            color: "alert-danger",
+            message: "Something went wrong",
+            isSuccess: false,
+          });
+          setDisplay(true);
+        }
       });
     return false;
   };

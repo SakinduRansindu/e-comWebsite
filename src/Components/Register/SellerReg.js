@@ -4,6 +4,8 @@ import ProfilePictureSet from "../ProfilePicture/ProfilePictureSet";
 import { useState, useEffect } from "react";
 import { createSeller } from "../../API/API";
 import Alert from "../Alert/Alert";
+import { useNavigate } from "react-router-dom";
+import { AuthData } from "../AuthWrapper/AuthWrapper";
 
 export default function SellerReg() {
   const [username, setUsername] = useState("");
@@ -19,6 +21,9 @@ export default function SellerReg() {
     isSuccess: false,
   });
   const [display, setDisplay] = useState(false);
+  
+  const navigate = useNavigate();
+  const { userLogin , userAutoLoginAtRegistration , clearMsgs} = AuthData();
 
   const clear = () => {
     setUsername("");
@@ -62,15 +67,64 @@ export default function SellerReg() {
           isSuccess: true,
         });
         setDisplay(true);
+
+        // userAutoLoginAtRegistration(res).then((res) => {
+        //   console.log(res);
+        //   navigate("/browse");
+        // }).catch((err) => {
+        //   console.error(err);
+        //   setMessage({
+        //     color: "alert-danger",
+        //     message: err,
+        //     isSuccess: false,
+        //   });
+        //   setDisplay(true);
+
+        //   clearMsgs();
+        // });  
+        
+        // do using this for now
+      
+        userLogin(Email, password)
+        .then((res) => {
+          setMessage({ color: "alert-success", message: res, hasError: false });
+          setDisplay(true);
+          console.log(res);
+          navigate("/browse");
+        })
+        .catch((err) => {
+          console.error(err);
+          setMessage({ color: "alert-danger", message: err, hasError: true });
+          setPassword("");
+          setDisplay(true);
+        });
       })
       .catch((err) => {
-        console.error(err.response.data.message);
-        setMessage({
-          color: "alert-danger",
-          message: err.response.data.message,
-          isSuccess: false,
-        });
-        setDisplay(true);
+        if (err.response && err.response.data && err.response.data.message) {
+          console.error(err.response.data.message);
+          setMessage({
+            color: "alert-danger",
+            message: err.response.data.message,
+            isSuccess: false,
+          });
+          setDisplay(true);
+          } else if (err.response && err.response.data) {
+            console.error(err.message);
+            setMessage({
+              color: "alert-danger",
+              message: err.message,
+              isSuccess: false,
+            });
+            setDisplay(true);
+          } else {
+            console.error(err.message);
+            setMessage({
+              color: "alert-danger",
+              message: "Something went wrong",
+              isSuccess: false,
+            });
+            setDisplay(true);
+          }
       });
     return false;
   };
