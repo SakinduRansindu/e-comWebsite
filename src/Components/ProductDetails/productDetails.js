@@ -4,6 +4,10 @@ import { GetProductDetails } from "../../API/ProductsApi";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
 
+
+import "./productDetails.css"; // Import the CSS file
+
+
 const ProductDetails = ({ pid, minimalData = false }) => {
   const [product, setProduct] = useState({});
   const [state, setState] = useState("loading");
@@ -88,8 +92,13 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                     LKR {(product.UnitPrice * (100 - product.Discount)) / 100}
                   </span>
 
+
+
+
+
                   <span class="text-muted fs-5">
-                      <strike>LKR {product.UnitPrice}</strike>
+                    <strike>LKR {product.UnitPrice}</strike>
+
                   </span>
                 </div>
                 <div class="d-flex flex-row ">
@@ -97,7 +106,10 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                     disabled={product.AvailableUnits === 0}
                     className="btn btn-light add-to-cart px-5"
                     onClick={handleClick}
+
                     style={{ backgroundColor: "#84b0e2" }}
+
+
                   >
                     Buy Now
                   </button>
