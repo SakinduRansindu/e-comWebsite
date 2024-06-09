@@ -26,7 +26,7 @@ export default function AddProductForm() {
     isSuccess: false,
   });
   const [display, setDisplay] = useState(false);
-
+  const [clearImages, setClearImages] = useState(false);
   const clear = () => {
     setDescription("");
     setUnitPrice("");
@@ -36,6 +36,14 @@ export default function AddProductForm() {
     setImages([]);
     setDisplayName("");
     setCategory("");
+    handleClearImages();
+  };
+
+  const handleClearImages = () => {
+    setClearImages(true); 
+    setTimeout(() => {
+      setClearImages(false);
+    }, 100);
   };
 
   let timeout;
@@ -73,6 +81,7 @@ export default function AddProductForm() {
           isSuccess: true,
         });
         setDisplay(true);
+        clear();
       })
       .catch((err) => {
         console.error(err.message);
@@ -106,6 +115,7 @@ export default function AddProductForm() {
                           onChange={(e) => setImages(e.target.files)}
                           isRequired={false}
                           placeholder="Product Name"
+                          onClearCalled={clearImages}
                         ></MultiImageSelect>
                   </div>
 
