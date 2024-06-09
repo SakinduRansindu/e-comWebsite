@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../Carousel/Carousel";
 import { GetProductDetails } from "../../API/ProductsApi";
 import Alert from "../Alert/Alert";
-import "./productDetails.css"; // Import the CSS file
 
 
 const ProductDetails = ({ pid, minimalData = false }) => {
@@ -50,6 +49,8 @@ const ProductDetails = ({ pid, minimalData = false }) => {
       border: '2px solid #ddd',
       borderRadius: '10px', 
       padding: '20px', 
+      
+      
     },
     productImage: {
       flex: 1,
