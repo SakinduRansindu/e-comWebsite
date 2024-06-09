@@ -5,8 +5,6 @@ import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
 
 
-import "./productDetails.css"; // Import the CSS file
-
 
 const ProductDetails = ({ pid, minimalData = false }) => {
   const [product, setProduct] = useState({});
