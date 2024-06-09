@@ -46,8 +46,37 @@ export default function AuthWrapper({children}) {
                 console.error(err.message);
                 reject(err.message);
             });
-        });
+        }); 
     }
+
+    const userAutoLoginAtRegistration = (data) => {
+        console.log(data, "reg user");
+      
+        if (data.user) {
+          console.log(data.user.FirstName, "reg user name");
+          setUser({
+            name: data.user.FirstName,
+            role: data.user.Type,
+            avatar: data.user.ProfilePicture,
+            loginMsg: '',
+            isLogedIn: true
+          });
+        } else if (data.seller) {
+          console.log(data.seller.DisplayName, "reg seller name");
+          setUser({
+            name: data.seller.DisplayName,
+            role: data.seller.Type,
+            avatar: data.seller.ProfilePicture,
+            loginMsg: '',
+            isLogedIn: true
+          });
+        } else {
+          console.error('Login failed');
+          console.log(data);
+          throw new Error('User set at registration failed');
+        }
+      };
+      
 
     const userLogout =async ()=>{
         return new Promise((resolve,reject)=>{
@@ -87,7 +116,7 @@ export default function AuthWrapper({children}) {
 
 
   return (
-    <AuthContext.Provider value={{user,userLogin,userLogout,CheckSessionErrors,clearMsgs}}>
+    <AuthContext.Provider value={{user,userLogin,userAutoLoginAtRegistration,userLogout,CheckSessionErrors,clearMsgs}}>
             {children}
     </AuthContext.Provider>
   )

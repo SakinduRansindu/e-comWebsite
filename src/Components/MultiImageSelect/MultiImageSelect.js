@@ -1,12 +1,14 @@
-import React from "react";
+import {React , useEffect }from "react";
 import { useState, createRef } from "react";
 import DefaultImage from "../../Images/no-image.png";
 import Carousel from "../Carousel/Carousel";
+// import useEffect from "react";
 
 export default function MultiImageSelect({
   label,
   onChange,
   placeholder,
+  onClearCalled,
   isRequired = false,
   ...props
 }) {
@@ -24,9 +26,16 @@ export default function MultiImageSelect({
       onChange(e);
     }
   };
+
   const onImgClick = () => {
     fileRef.current.click();
   };
+
+  useEffect(() => {
+    if (onClearCalled) {
+      setImage(null); 
+    }
+  }, [onClearCalled]);
 
   return (
     <div className="m-2 mb-3">
