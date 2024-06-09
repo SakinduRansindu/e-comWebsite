@@ -122,7 +122,7 @@ const ProductDetails = ({ pid, minimalData = false }) => {
       padding: '20px',
       marginTop: '20px',
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      backgroundColor: '#f8f9fa',
+      backgroundColor: '#1b4676',
       width: '50%',
       margin: '0 auto',
     },
