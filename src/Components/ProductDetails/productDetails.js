@@ -3,7 +3,8 @@ import Carousel from "../Carousel/Carousel";
 import { GetProductDetails } from "../../API/ProductsApi";
 import Alert from "../Alert/Alert";
 import { useNavigate } from "react-router-dom";
-import "./productDetails.css"; // Import the CSS file
+
+
 
 const ProductDetails = ({ pid, minimalData = false }) => {
   const [product, setProduct] = useState({});
@@ -88,8 +89,14 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                   <span class="pe-2 display-4">
                     LKR {(product.UnitPrice * (100 - product.Discount)) / 100}
                   </span>
+
+
+
+
+
                   <span class="text-muted fs-5">
                     <strike>LKR {product.UnitPrice}</strike>
+
                   </span>
                 </div>
                 <div class="d-flex flex-row ">
@@ -97,6 +104,10 @@ const ProductDetails = ({ pid, minimalData = false }) => {
                     disabled={product.AvailableUnits === 0}
                     className="btn btn-light add-to-cart px-5"
                     onClick={handleClick}
+
+                    style={{ backgroundColor: "#84b0e2" }}
+
+
                   >
                     Buy Now
                   </button>
